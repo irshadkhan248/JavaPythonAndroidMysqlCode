@@ -1,0 +1,1325 @@
+  use 28_2_db;
+Database changed
+  show tables;
++-------------------+
+| Tables_in_28_2_db |
++-------------------+
+| course            |
+| dept              |
+| personel          |
+| stud              |
+| t1                |
+| t2                |
+| user              |
++-------------------+
+
+  
+  select*from stud;
++-----+-------+-------+---------+
+| rno | name  | dept  | dept_id |
++-----+-------+-------+---------+
+|   1 | amit  | sales |       1 |
+|   6 | kamit | sales |       2 |
+|   3 | rumit | sales |       3 |
+|   5 | pumit | sales |       4 |
++-----+-------+-------+---------+
+
+
+  select *from t1;
++------+--------+
+| id   | name   |
++------+--------+
+|    1 | amit   |
+|    2 | sumit  |
+|    3 | rakesh |
++------+--------+
+
+
+  select *from t2;
++------+--------+
+| id   | name   |
++------+--------+
+|    1 | amit   |
+|   30 | rakesh |
++------+--------+
+
+  select *from user;;
++----+--------+-----------+
+| id | name   | course_id |
++----+--------+-----------+
+|  1 | amit   |         1 |
+|  2 | smit   |      NULL |
+|  3 | vishal |         1 |
+|  4 | sumit  |         3 |
+|  5 | suman  |      NULL |
++----+--------+-----------+
+
+
+
+
+  select *from user;;
++----+--------+-----------+
+| id | name   | course_id |
++----+--------+-----------+
+|  1 | amit   |         1 |
+|  2 | smit   |      NULL |
+|  3 | vishal |         1 |
+|  4 | sumit  |         3 |
+|  5 | suman  |      NULL |
++----+--------+-----------+
+
+
+  select count(*),course_id from user;
++----------+-----------+
+| count(*) | course_id |
++----------+-----------+
+|        5 |      NULL |
++----------+-----------+
+
+
+  select count(*),course_id from user where course_id is not null;
++----------+-----------+
+| count(*) | course_id |
++----------+-----------+
+|        3 |         1 |
++----------+-----------+
+
+
+  
+  select * from 0302_db.employee;
++----+---------+-----------+---------+--------+
+| id | name    | dept_name | salary  | gender |
++----+---------+-----------+---------+--------+
+|  1 | amit    | comps     | 4500.00 | m      |
+|  2 | sumit   | comps     | 5000.00 | m      |
+|  3 | reena   | comps     | 5000.00 | f      |
+|  4 | nikhil  | it        | 3500.00 | m      |
+|  5 | seema   | extc      | 2500.00 | f      |
+|  6 | rakesh  | it        | 4200.00 | m      |
+|  7 | rinkesh | comps     | 6200.00 | m      |
+|  8 | pooja   | extc      | 2200.00 | f      |
+|  9 | saurabh | it        | 4800.00 | m      |
+| 10 | rahul   | extc      | 5800.00 | m      |
++----+---------+-----------+---------+--------+
+
+
+ 
+  create database l6_db;
+Query OK, 1 row affected (0.11 sec)
+
+  
+  drop database l6_db;
+
+  create database l6_db_self;
+
+
+  use l6_db_self;
+Database changed
+  
+  create table emp_1(id int primary key,name varchar(25),deptno int,salary decimal(8,2));
+
+
+  
+  desc emp_1;
++--------+--------------+------+-----+---------+-------+
+| Field  | Type         | Null | Key | Default | Extra |
++--------+--------------+------+-----+---------+-------+
+| id     | int(11)      | NO   | PRI | NULL    |       |
+| name   | varchar(25)  | YES  |     | NULL    |       |
+| deptno | int(11)      | YES  |     | NULL    |       |
+| salary | decimal(8,2) | YES  |     | NULL    |       |
++--------+--------------+------+-----+---------+-------+
+
+
+  source C:\sql_demo\L6\l6_db_self.sql
+
+  select*from emp_1;
++----+--------+--------+----------+
+| id | name   | deptno | salary   |
++----+--------+--------+----------+
+|  1 | smith  |     20 | 22000.00 |
+|  2 | jhon   |     30 | 18000.00 |
+|  3 | adam   |     20 | 23000.00 |
+|  4 | steve  |     30 | 24000.00 |
+|  5 | alex   |     10 | 30000.00 |
+|  6 | warren |     10 | 20000.00 |
++----+--------+--------+----------+
+
+
+  select name,salary from emp_1 where salary> (select salary from emp_1 where name='adam');
++-------+----------+
+| name  | salary   |
++-------+----------+
+| steve | 24000.00 |
+| alex  | 30000.00 |
++-------+----------+
+
+
+ 
+  select name,salary from emp_1 where salary< (select salary from emp_1 where name='adam')and deptno=(select deptno from emp_1 where name ='adam');
++-------+----------+
+| name  | salary   |
++-------+----------+
+| smith | 22000.00 |
++-------+----------+
+1 row in set (0.00 sec)
+
+  select name,salary from emp_1 where  salary<(select salary from emp_1 where name='adam') and deptno=(select deptno from emp_1 where name='adam');
++-------+----------+
+| name  | salary   |
++-------+----------+
+| smith | 22000.00 |
++-------+----------+
+
+
+  select *from emp_1 where salary=(select max(salary)from emp_1);
++----+------+--------+----------+
+| id | name | deptno | salary   |
++----+------+--------+----------+
+|  5 | alex |     10 | 30000.00 |
++----+------+--------+----------+
+
+
+  
+  select *from emp_1 where salary=(select max(salary)from emp_1);
++----+------+--------+----------+
+| id | name | deptno | salary   |
++----+------+--------+----------+
+|  5 | alex |     10 | 30000.00 |
++----+------+--------+----------+
+
+
+  select *from emp_1 where salary=(select max(salary)from emp_1)group by deptno ;
++----+------+--------+----------+
+| id | name | deptno | salary   |
++----+------+--------+----------+
+|  5 | alex |     10 | 30000.00 |
++----+------+--------+----------+
+
+
+ 
+  select *from emp_1 where salary in(select max(salary)from emp_1 group by deptno);
++----+-------+--------+----------+
+| id | name  | deptno | salary   |
++----+-------+--------+----------+
+|  3 | adam  |     20 | 23000.00 |
+|  4 | steve |     30 | 24000.00 |
+|  5 | alex  |     10 | 30000.00 |
++----+-------+--------+----------+
+
+
+  select name ,deptno from emp_1 where salary in(select max(salary)from emp_1 group by deptno);
++-------+--------+
+| name  | deptno |
++-------+--------+
+| adam  |     20 |
+| steve |     30 |
+| alex  |     10 |
++-------+--------+
+
+
+  select name ,deptno,salary from emp_1 where salary in(select max(salary)from emp_1 group by deptno);
++-------+--------+----------+
+| name  | deptno | salary   |
++-------+--------+----------+
+| adam  |     20 | 23000.00 |
+| steve |     30 | 24000.00 |
+| alex  |     10 | 30000.00 |
++-------+--------+----------+
+
+
+  select name ,deptno,salary from emp_1 where salary in(select max(salary)from emp_1 group by deptno)order by salary desc;
++-------+--------+----------+
+| name  | deptno | salary   |
++-------+--------+----------+
+| alex  |     10 | 30000.00 |
+| steve |     30 | 24000.00 |
+| adam  |     20 | 23000.00 |
++-------+--------+----------+
+
+  select name ,deptno,salary from emp_1 where salary in(select max(salary)from emp_1 group by deptno)order by deptno;
++-------+--------+----------+
+| name  | deptno | salary   |
++-------+--------+----------+
+| alex  |     10 | 30000.00 |
+| adam  |     20 | 23000.00 |
+| steve |     30 | 24000.00 |
++-------+--------+----------+
+
+
+  create table dept_1(deptno int primary key,dept_name varchar(25),dept_loc varchar(25));
+
+  insert dept_1 values(10,'sales','mumbai');
+
+
+  insert dept_1 values(20,'producation','pune');
+
+  insert dept_1 values(30,'marketing','banglore');
+
+
+  insert dept_1 values(40,'testing','banglore');
+
+
+  
+  select name from emp_1 where deptno in(select deptno from dept_1 where dept_loc='mumbai');
++--------+
+| name   |
++--------+
+| alex   |
+| warren |
++--------+
+
+
+  select *from dept_1;
++--------+-------------+----------+
+| deptno | dept_name   | dept_loc |
++--------+-------------+----------+
+|     10 | sales       | mumbai   |
+|     20 | producation | pune     |
+|     30 | marketing   | banglore |
+|     40 | testing     | banglore |
++--------+-------------+----------+
+
+
+  select *from emp_1;
++----+--------+--------+----------+
+| id | name   | deptno | salary   |
++----+--------+--------+----------+
+|  1 | smith  |     20 | 22000.00 |
+|  2 | jhon   |     30 | 18000.00 |
+|  3 | adam   |     20 | 23000.00 |
+|  4 | steve  |     30 | 24000.00 |
+|  5 | alex   |     10 | 30000.00 |
+|  6 | warren |     10 | 20000.00 |
++----+--------+--------+----------+
+
+
+  select name,deptno from emp_1 where deptno in(select deptno from dept_1 where dept_loc='mumbai');
++--------+--------+
+| name   | deptno |
++--------+--------+
+| alex   |     10 |
+| warren |     10 |
++--------+--------+
+
+
+  
+  select name,emp_1.deptno,dept_loc from emp_1,dept_1 where emp_1.deptno in(select dept_loc from dept_1 where dept_loc='mumbai');
+
+
+  select name,emp_1.deptno,dept_loc from emp_1,dept_1 where emp_1.deptno in(select dept_1.deptno from dept_1 where dept_loc='mumbai');
++--------+--------+----------+
+| name   | deptno | dept_loc |
++--------+--------+----------+
+| alex   |     10 | mumbai   |
+| warren |     10 | mumbai   |
+| alex   |     10 | pune     |
+| warren |     10 | pune     |
+| alex   |     10 | banglore |
+| warren |     10 | banglore |
+| alex   |     10 | banglore |
+| warren |     10 | banglore |
++--------+--------+----------+
+
+
+  select name,emp_1.deptno,dept_loc from emp_1 join dept_1 where emp_1.deptno in(select dept_1.deptno from dept_1 where dept_loc='mumbai');
++--------+--------+----------+
+| name   | deptno | dept_loc |
++--------+--------+----------+
+| alex   |     10 | mumbai   |
+| warren |     10 | mumbai   |
+| alex   |     10 | pune     |
+| warren |     10 | pune     |
+| alex   |     10 | banglore |
+| warren |     10 | banglore |
+| alex   |     10 | banglore |
+| warren |     10 | banglore |
++--------+--------+----------+
+
+
+  
+  select name,emp_1.deptno from emp_1 where emp_1.deptno in(select dept_loc from dept_1 where dept_loc='mumbai');
+
+
+  select name,deptno from emp_1 where deptno in(select dept_loc from dept_1 where dept_loc='mumbai');
+
+
+  select name from emp_1 where deptno in(select deptno from dept_1 where dept_loc='mumbai');
++--------+
+| name   |
++--------+
+| alex   |
+| warren |
++--------+
+
+
+  select name from emp_1 where deptno in(select dept_loc from dept_1 where dept_loc='mumbai');
+
+
+  select name from emp_1 where deptno in(select deptno from dept_1 where dept_loc='mumbai');
++--------+
+| name   |
++--------+
+| alex   |
+| warren |
++--------+
+
+
+  select name,deptno from emp_1 where salary=(select max(salary) group by deptno)order by deptno;
++--------+--------+
+| name   | deptno |
++--------+--------+
+| alex   |     10 |
+| warren |     10 |
+| smith  |     20 |
+| adam   |     20 |
+| jhon   |     30 |
+| steve  |     30 |
++--------+--------+
+
+
+  select name,deptno,salary from emp_1 where salary=(select max(salary) group by deptno)order by deptno;
++--------+--------+----------+
+| name   | deptno | salary   |
++--------+--------+----------+
+| alex   |     10 | 30000.00 |
+| warren |     10 | 20000.00 |
+| smith  |     20 | 22000.00 |
+| adam   |     20 | 23000.00 |
+| jhon   |     30 | 18000.00 |
+| steve  |     30 | 24000.00 |
++--------+--------+----------+
+
+
+  select name,deptno,salary from emp_1 where salary=(select max(salary) group by deptno);
++--------+--------+----------+
+| name   | deptno | salary   |
++--------+--------+----------+
+| smith  |     20 | 22000.00 |
+| jhon   |     30 | 18000.00 |
+| adam   |     20 | 23000.00 |
+| steve  |     30 | 24000.00 |
+| alex   |     10 | 30000.00 |
+| warren |     10 | 20000.00 |
++--------+--------+----------+
+
+
+  select name,deptno,salary from emp_1 where salary in(select max(salary) group by deptno);
++--------+--------+----------+
+| name   | deptno | salary   |
++--------+--------+----------+
+| smith  |     20 | 22000.00 |
+| jhon   |     30 | 18000.00 |
+| adam   |     20 | 23000.00 |
+| steve  |     30 | 24000.00 |
+| alex   |     10 | 30000.00 |
+| warren |     10 | 20000.00 |
++--------+--------+----------+
+
+
+  
+  select name,deptno,salary from emp_1 where salary in(select max(salary) from emp_1 group by deptno);
++-------+--------+----------+
+| name  | deptno | salary   |
++-------+--------+----------+
+| adam  |     20 | 23000.00 |
+| steve |     30 | 24000.00 |
+| alex  |     10 | 30000.00 |
++-------+--------+----------+
+
+
+  select name,deptno,salary from emp_1 where salary in(select max(salary) from emp_1 group by deptno)order by deptno;
++-------+--------+----------+
+| name  | deptno | salary   |
++-------+--------+----------+
+| alex  |     10 | 30000.00 |
+| adam  |     20 | 23000.00 |
+| steve |     30 | 24000.00 |
++-------+--------+----------+
+
+  select name,salary from emp_1 where salary in (select avg(salary)from emp_1 group by deptno);
+
+
+  
+  select name,salary,deptno from emp_1 e where salary > (select avg(salary)from emp_1 where deptno=e.deptno);
++-------+----------+--------+
+| name  | salary   | deptno |
++-------+----------+--------+
+| adam  | 23000.00 |     20 |
+| steve | 24000.00 |     30 |
+| alex  | 30000.00 |     10 |
++-------+----------+--------+
+
+  select name,salary,deptno from emp_1 e where salary > (select avg(salary)from emp_1 where e.deptno=deptno);
++-------+----------+--------+
+| name  | salary   | deptno |
++-------+----------+--------+
+| adam  | 23000.00 |     20 |
+| steve | 24000.00 |     30 |
+| alex  | 30000.00 |     10 |
++-------+----------+--------+
+
+
+  select name,salary,deptno from emp_1 e where salary > (select avg(salary)from emp_1 where e.deptno=e.deptno);
++-------+----------+--------+
+| name  | salary   | deptno |
++-------+----------+--------+
+| adam  | 23000.00 |     20 |
+| steve | 24000.00 |     30 |
+| alex  | 30000.00 |     10 |
++-------+----------+--------+
+
+
+  select name,salary,deptno from emp_1 e where salary > (select avg(salary)from emp_1 where deptno=deptno);
++-------+----------+--------+
+| name  | salary   | deptno |
++-------+----------+--------+
+| adam  | 23000.00 |     20 |
+| steve | 24000.00 |     30 |
+| alex  | 30000.00 |     10 |
++-------+----------+--------+
+
+
+  
+  select name,salary from emp_1 e  order by salary limit 1,1;
++--------+----------+
+| name   | salary   |
++--------+----------+
+| warren | 20000.00 |
++--------+----------+
+
+
+  select name,salary from emp_1 e  order by salary desc limit 1,1;
++-------+----------+
+| name  | salary   |
++-------+----------+
+| steve | 24000.00 |
++-------+----------+
+
+
+  select salary from emp_1;
++----------+
+| salary   |
++----------+
+| 22000.00 |
+| 18000.00 |
+| 23000.00 |
+| 24000.00 |
+| 30000.00 |
+| 20000.00 |
++----------+
+
+  select salary from emp_1 order by salary desc;
++----------+
+| salary   |
++----------+
+| 30000.00 |
+| 24000.00 |
+| 23000.00 |
+| 22000.00 |
+| 20000.00 |
+| 18000.00 |
++----------+
+
+  create table emp_2 as select *from emp_1;
+
+
+  
+  select *from emp_2;
++----+--------+--------+----------+
+| id | name   | deptno | salary   |
++----+--------+--------+----------+
+|  1 | smith  |     20 | 22000.00 |
+|  2 | jhon   |     30 | 18000.00 |
+|  3 | adam   |     20 | 23000.00 |
+|  4 | steve  |     30 | 24000.00 |
+|  5 | alex   |     10 | 30000.00 |
+|  6 | warren |     10 | 20000.00 |
++----+--------+--------+----------+
+
+
+  desc emp_2;
++--------+--------------+------+-----+---------+-------+
+| Field  | Type         | Null | Key | Default | Extra |
++--------+--------------+------+-----+---------+-------+
+| id     | int(11)      | NO   |     | NULL    |       |
+| name   | varchar(25)  | YES  |     | NULL    |       |
+| deptno | int(11)      | YES  |     | NULL    |       |
+| salary | decimal(8,2) | YES  |     | NULL    |       |
++--------+--------------+------+-----+---------+-------+
+
+
+  drop table emp_2;
+
+
+  create table emp_2 as select *from emp_1;
+
+   select *from emp_2;
++----+--------+--------+----------+
+| id | name   | deptno | salary   |
++----+--------+--------+----------+
+|  1 | smith  |     20 | 22000.00 |
+|  2 | jhon   |     30 | 18000.00 |
+|  3 | adam   |     20 | 23000.00 |
+|  4 | steve  |     30 | 24000.00 |
+|  5 | alex   |     10 | 30000.00 |
+|  6 | warren |     10 | 20000.00 |
++----+--------+--------+----------+
+
+  drop table emp_2;
+
+
+  
+  create table emp_2 like emp_1;
+
+
+  desc emp_1;
++--------+--------------+------+-----+---------+-------+
+| Field  | Type         | Null | Key | Default | Extra |
++--------+--------------+------+-----+---------+-------+
+| id     | int(11)      | NO   | PRI | NULL    |       |
+| name   | varchar(25)  | YES  |     | NULL    |       |
+| deptno | int(11)      | YES  |     | NULL    |       |
+| salary | decimal(8,2) | YES  |     | NULL    |       |
++--------+--------------+------+-----+---------+-------+
+
+  insert into emp_2 select *from emp_1;
+
+
+  desc emp_2;
++--------+--------------+------+-----+---------+-------+
+| Field  | Type         | Null | Key | Default | Extra |
++--------+--------------+------+-----+---------+-------+
+| id     | int(11)      | NO   | PRI | NULL    |       |
+| name   | varchar(25)  | YES  |     | NULL    |       |
+| deptno | int(11)      | YES  |     | NULL    |       |
+| salary | decimal(8,2) | YES  |     | NULL    |       |
++--------+--------------+------+-----+---------+-------+
+
+
+  select *from emp_2;
++----+--------+--------+----------+
+| id | name   | deptno | salary   |
++----+--------+--------+----------+
+|  1 | smith  |     20 | 22000.00 |
+|  2 | jhon   |     30 | 18000.00 |
+|  3 | adam   |     20 | 23000.00 |
+|  4 | steve  |     30 | 24000.00 |
+|  5 | alex   |     10 | 30000.00 |
+|  6 | warren |     10 | 20000.00 |
++----+--------+--------+----------+
+
+
+  create table emp_1_bkup  like emp_1;
+
+
+  insert emp_1_bkup select *from emp_1;
+
+
+  select *from emp_1_bkup;
++----+--------+--------+----------+
+| id | name   | deptno | salary   |
++----+--------+--------+----------+
+|  1 | smith  |     20 | 22000.00 |
+|  2 | jhon   |     30 | 18000.00 |
+|  3 | adam   |     20 | 23000.00 |
+|  4 | steve  |     30 | 24000.00 |
+|  5 | alex   |     10 | 30000.00 |
+|  6 | warren |     10 | 20000.00 |
++----+--------+--------+----------+
+
+
+  select *from dept_1;
++--------+-------------+----------+
+| deptno | dept_name   | dept_loc |
++--------+-------------+----------+
+|     10 | sales       | mumbai   |
+|     20 | producation | pune     |
+|     30 | marketing   | banglore |
+|     40 | testing     | banglore |
++--------+-------------+----------+
+
+  
+  update emp_1_bkup set salary=salary+2000 where deptno=(select deptno from dept_1 where dept_name='sales');
+
+
+  select *from emp_1_bkup;
++----+--------+--------+----------+
+| id | name   | deptno | salary   |
++----+--------+--------+----------+
+|  1 | smith  |     20 | 22000.00 |
+|  2 | jhon   |     30 | 18000.00 |
+|  3 | adam   |     20 | 23000.00 |
+|  4 | steve  |     30 | 24000.00 |
+|  5 | alex   |     10 | 32000.00 |
+|  6 | warren |     10 | 22000.00 |
++----+--------+--------+----------+
+
+  delete from emp_1_bkup where deptno=(select deptno from dept_1 where dept_name='sales');
+
+  select *from emp_1_bkup;
++----+-------+--------+----------+
+| id | name  | deptno | salary   |
++----+-------+--------+----------+
+|  1 | smith |     20 | 22000.00 |
+|  2 | jhon  |     30 | 18000.00 |
+|  3 | adam  |     20 | 23000.00 |
+|  4 | steve |     30 | 24000.00 |
++----+-------+--------+----------+
+
+
+  create table customer(cid int primary key,cname varchar(25));
+
+
+  insert customer value(1,'amit'),(2,'sumit'),(3,'rajesh');
+
+  
+  create table orders(oid int primary key,name varchar(25),cid int,qty int,price decimal(8,2),foreign key(cid)references customer(cid));
+
+  drop table orders;
+
+
+  
+  create table orders(oid int primary key,name varchar(25),cid int,qty int,price decimal(8,2));
+
+  alter table orders add constraint irshad foreign key(cid)references customer(cid);
+
+  
+  select *from information_schema.table_constraints where table_name ='oders';
+
+
+  select *from information_schema.table_constraints where table_name ='orders';
++--------------------+-------------------+-----------------+--------------+------------+-----------------+
+| CONSTRAINT_CATALOG | CONSTRAINT_SCHEMA | CONSTRAINT_NAME | TABLE_SCHEMA | TABLE_NAME | CONSTRAINT_TYPE |
++--------------------+-------------------+-----------------+--------------+------------+-----------------+
+| def                | l6_db_self        | PRIMARY         | l6_db_self   | orders     | PRIMARY KEY     |
+| def                | l6_db_self        | irshad          | l6_db_self   | orders     | FOREIGN KEY     |
++--------------------+-------------------+-----------------+--------------+------------+-----------------+
+
+  alter table orders drop foreign key irshad;
+
+
+
+  select *from information_schema.table_constraints where table_name ='orders';
++--------------------+-------------------+-----------------+--------------+------------+-----------------+
+| CONSTRAINT_CATALOG | CONSTRAINT_SCHEMA | CONSTRAINT_NAME | TABLE_SCHEMA | TABLE_NAME | CONSTRAINT_TYPE |
++--------------------+-------------------+-----------------+--------------+------------+-----------------+
+| def                | l6_db_self        | PRIMARY         | l6_db_self   | orders     | PRIMARY KEY     |
++--------------------+-------------------+-----------------+--------------+------------+-----------------+
+
+
+  alter table orders add constraint irshad foreign key(cid)references customer(cid);
+
+
+  insert orders values(101,'java ref book',1,2,200);
+
+  insert orders values(102,'redmi phone',2,1,10499),(103,'fan',1,1,5499);
+
+  select *from orders;
++-----+---------------+------+------+----------+
+| oid | name          | cid  | qty  | price    |
++-----+---------------+------+------+----------+
+| 101 | java ref book |    1 |    2 |   200.00 |
+| 102 | redmi phone   |    2 |    1 | 10499.00 |
+| 103 | fan           |    1 |    1 |  5499.00 |
++-----+---------------+------+------+----------+
+
+
+  select *from customer;
++-----+--------+
+| cid | cname  |
++-----+--------+
+|   1 | amit   |
+|   2 | sumit  |
+|   3 | rajesh |
++-----+--------+
+
+
+  desc orders;
++-------+--------------+------+-----+---------+-------+
+| Field | Type         | Null | Key | Default | Extra |
++-------+--------------+------+-----+---------+-------+
+| oid   | int(11)      | NO   | PRI | NULL    |       |
+| name  | varchar(25)  | YES  |     | NULL    |       |
+| cid   | int(11)      | YES  | MUL | NULL    |       |
+| qty   | int(11)      | YES  |     | NULL    |       |
+| price | decimal(8,2) | YES  |     | NULL    |       |
++-------+--------------+------+-----+---------+-------+
+
+
+  
+  select cname from customer where cid in (select cid from orders where name='fan');
++-------+
+| cname |
++-------+
+| amit  |
++-------+
+
+  select cid,price from orders where price =(select max(price)from orders);
++------+----------+
+| cid  | price    |
++------+----------+
+|    2 | 10499.00 |
++------+----------+
+
+
+  
+  
+  show databases;
++--------------------+
+| Database           |
++--------------------+
+| 0103_db            |
+| 0302_db            |
+| 28_2_db            |
+| bike_db            |
+| bike_db1           |
+| book_db            |
+| book_db2           |
+| book_db3           |
+| bor1               |
+| borivli5           |
+| emp_db             |
+| emp_db2            |
+| emp_db3            |
+| emp_db_l4          |
+| fd                 |
+| information_schema |
+| invoice_db         |
+| l5_demo            |
+| l6_db_self         |
+| mysql              |
+| performance_schema |
+| prac1_7feb         |
+| q14                |
+| sakila             |
+| sys                |
+| temp1              |
+| temp2              |
+| test               |
+| ticket_db          |
+| ticket_db2         |
+| vender_db          |
+| vendors_db         |
+| world              |
++--------------------+
+
+
+  
+  create table t1 as select *from  0302_db.employee;
+
+  rename table  t1 to emp;
+
+
+  create view t1 as select *from emp;
+
+
+  select *from t1;
++----+---------+-----------+---------+--------+
+| id | name    | dept_name | salary  | gender |
++----+---------+-----------+---------+--------+
+|  1 | amit    | comps     | 4500.00 | m      |
+|  2 | sumit   | comps     | 5000.00 | m      |
+|  3 | reena   | comps     | 5000.00 | f      |
+|  4 | nikhil  | it        | 3500.00 | m      |
+|  5 | seema   | extc      | 2500.00 | f      |
+|  6 | rakesh  | it        | 4200.00 | m      |
+|  7 | rinkesh | comps     | 6200.00 | m      |
+|  8 | pooja   | extc      | 2200.00 | f      |
+|  9 | saurabh | it        | 4800.00 | m      |
+| 10 | rahul   | extc      | 5800.00 | m      |
++----+---------+-----------+---------+--------+
+
+
+  create view t2 as select name,dept_name from emp;
+
+
+  select *from t2;
++---------+-----------+
+| name    | dept_name |
++---------+-----------+
+| amit    | comps     |
+| sumit   | comps     |
+| reena   | comps     |
+| nikhil  | it        |
+| seema   | extc      |
+| rakesh  | it        |
+| rinkesh | comps     |
+| pooja   | extc      |
+| saurabh | it        |
+| rahul   | extc      |
++---------+-----------+
+
+
+  create view t3 as select name from t2;
+
+
+  select *from t3;
++---------+
+| name    |
++---------+
+| amit    |
+| sumit   |
+| reena   |
+| nikhil  |
+| seema   |
+| rakesh  |
+| rinkesh |
+| pooja   |
+| saurabh |
+| rahul   |
++---------+
+
+
+  
+  select *from t3 where name like '%a%';
++---------+
+| name    |
++---------+
+| amit    |
+| reena   |
+| seema   |
+| rakesh  |
+| pooja   |
+| saurabh |
+| rahul   |
++---------+
+
+
+  select *from t3 where name like 'a%';
++------+
+| name |
++------+
+| amit |
++------+
+
+
+  select *from t3 where name like '%a';
++-------+
+| name  |
++-------+
+| reena |
+| seema |
+| pooja |
++-------+
+
+
+  select *from t3 where name like '%a%t';
++------+
+| name |
++------+
+| amit |
++------+
+
+
+  select *from t3 where name like '%a_%_%';
++---------+
+| name    |
++---------+
+| amit    |
+| rakesh  |
+| saurabh |
+| rahul   |
++---------+
+
+
+  select *from t3 where name like '%am%';
++------+
+| name |
++------+
+| amit |
++------+
+
+
+  select *from t3 where name like '%am%t';
++------+
+| name |
++------+
+| amit |
++------+
+1 row in set (0.00 sec)
+
+  
+  drop view t3;
+
+
+  create view t3 as select name from t2;
+
+
+  select*from emp;
++----+---------+-----------+---------+--------+
+| id | name    | dept_name | salary  | gender |
++----+---------+-----------+---------+--------+
+|  1 | amit    | comps     | 4500.00 | m      |
+|  2 | sumit   | comps     | 5000.00 | m      |
+|  3 | reena   | comps     | 5000.00 | f      |
+|  4 | nikhil  | it        | 3500.00 | m      |
+|  5 | seema   | extc      | 2500.00 | f      |
+|  6 | rakesh  | it        | 4200.00 | m      |
+|  7 | rinkesh | comps     | 6200.00 | m      |
+|  8 | pooja   | extc      | 2200.00 | f      |
+|  9 | saurabh | it        | 4800.00 | m      |
+| 10 | rahul   | extc      | 5800.00 | m      |
++----+---------+-----------+---------+--------+
+
+  
+  create view v4 as select id,gender from emp where gender='m';
+
+  select *from v4;
++----+--------+
+| id | gender |
++----+--------+
+|  1 | m      |
+|  2 | m      |
+|  4 | m      |
+|  6 | m      |
+|  7 | m      |
+|  9 | m      |
+| 10 | m      |
++----+--------+
+
+
+  create or  replace view v4 as select id,gender from emp where gender='m';
+
+  create or  replace view v4 as select id,gender from emp where gender='f';
+
+  select *from v4;
++----+--------+
+| id | gender |
++----+--------+
+|  3 | f      |
+|  5 | f      |
+|  8 | f      |
++----+--------+
+
+
+  create or  replace view v4 as select id,gender from emp where gender='m';
+
+
+  select *from v4;
++----+--------+
+| id | gender |
++----+--------+
+|  1 | m      |
+|  2 | m      |
+|  4 | m      |
+|  6 | m      |
+|  7 | m      |
+|  9 | m      |
+| 10 | m      |
++----+--------+
+
+
+  select count(*)from v4;
++----------+
+| count(*) |
++----------+
+|        7 |
++----------+
+
+
+  create view v5 (n,d)as select name,dept_name from emp;
+
+  select *from v5;
++---------+-------+
+| n       | d     |
++---------+-------+
+| amit    | comps |
+| sumit   | comps |
+| reena   | comps |
+| nikhil  | it    |
+| seema   | extc  |
+| rakesh  | it    |
+| rinkesh | comps |
+| pooja   | extc  |
+| saurabh | it    |
+| rahul   | extc  |
++---------+-------+
+
+
+  
+  create view v6 as select name n,dept_name from emp;
+
+
+  select *from v6;
++---------+-----------+
+| n       | dept_name |
++---------+-----------+
+| amit    | comps     |
+| sumit   | comps     |
+| reena   | comps     |
+| nikhil  | it        |
+| seema   | extc      |
+| rakesh  | it        |
+| rinkesh | comps     |
+| pooja   | extc      |
+| saurabh | it        |
+| rahul   | extc      |
++---------+-----------+
+
+
+  check table view_name;
++----------------------+-------+----------+--------------------------------------------+
+| Table                | Op    | Msg_type | Msg_text                                   |
++----------------------+-------+----------+--------------------------------------------+
+| l6_db_self.view_name | check | Error    | Table 'l6_db_self.view_name' doesn't exist |
+| l6_db_self.view_name | check | status   | Operation failed                           |
++----------------------+-------+----------+--------------------------------------------+
+
+
+  check table v6;
++---------------+-------+----------+----------+
+| Table         | Op    | Msg_type | Msg_text |
++---------------+-------+----------+----------+
+| l6_db_self.v6 | check | status   | OK       |
++---------------+-------+----------+----------+
+
+
+  rename table emp to emp1;
+
+
+  check table v6;
++---------------+-------+----------+---------------------------------------------------------------------------------------------------------------------------------+
+| Table         | Op    | Msg_type | Msg_text                                                                                                                        |
++---------------+-------+----------+---------------------------------------------------------------------------------------------------------------------------------+
+| l6_db_self.v6 | check | Error    | Table 'l6_db_self.emp' doesn't exist                                                                                            |
+| l6_db_self.v6 | check | Error    | View 'l6_db_self.v6' references invalid table(s) or column(s) or function(s) or definer/invoker of view lack rights to use them |
+| l6_db_self.v6 | check | error    | Corrupt                                                                                                                         |
++---------------+-------+----------+---------------------------------------------------------------------------------------------------------------------------------+
+
+
+  check table v6\G;
+*************************** 1. row ***************************
+   Table: l6_db_self.v6
+      Op: check
+Msg_type: Error
+Msg_text: Table 'l6_db_self.emp' doesn't exist
+*************************** 2. row ***************************
+   Table: l6_db_self.v6
+      Op: check
+Msg_type: Error
+Msg_text: View 'l6_db_self.v6' references invalid table(s) or column(s) or function(s) or definer/invoker of view lack rights to use them
+*************************** 3. row ***************************
+   Table: l6_db_self.v6
+      Op: check
+Msg_type: error
+Msg_text: Corrupt
+3 rows in set (0.00 sec)
+
+
+
+  rename table emp1 to emp ;
+
+
+  check table v6;
++---------------+-------+----------+----------+
+| Table         | Op    | Msg_type | Msg_text |
++---------------+-------+----------+----------+
+| l6_db_self.v6 | check | status   | OK       |
++---------------+-------+----------+----------+
+
+
+  select *from v6;
++---------+-----------+
+| n       | dept_name |
++---------+-----------+
+| amit    | comps     |
+| sumit   | comps     |
+| reena   | comps     |
+| nikhil  | it        |
+| seema   | extc      |
+| rakesh  | it        |
+| rinkesh | comps     |
+| pooja   | extc      |
+| saurabh | it        |
+| rahul   | extc      |
++---------+-----------+
+
+
+  rename table emp to emp1 ;
+
+
+  select *from v6;
+
+  rename table emp1 to emp ;
+
+
+  select *from v6;
++---------+-----------+
+| n       | dept_name |
++---------+-----------+
+| amit    | comps     |
+| sumit   | comps     |
+| reena   | comps     |
+| nikhil  | it        |
+| seema   | extc      |
+| rakesh  | it        |
+| rinkesh | comps     |
+| pooja   | extc      |
+| saurabh | it        |
+| rahul   | extc      |
++---------+-----------+
+
+
+ 
+  create table book(id int primary key, name varchar(25),author varchar(25),nop int ,price decimal(8,2));
+
+  insert book value(50,'complete java','vishal',554,600),(60,'pure java','umesh',784,900),(70,'java diamond','rao',145,200);
+
+
+  select *from book;
++----+---------------+--------+------+--------+
+| id | name          | author | nop  | price  |
++----+---------------+--------+------+--------+
+| 50 | complete java | vishal |  554 | 600.00 |
+| 60 | pure java     | umesh  |  784 | 900.00 |
+| 70 | java diamond  | rao    |  145 | 200.00 |
++----+---------------+--------+------+--------+
+
+
+  
+  create view book_java as select id,name from book where name like '%java%';
+
+
+ 
+  create or replace view book_java as select id,name from book where name like'%java%';
+
+
+ 
+  create or replace view book_java as select id,name from book where name like'%java%';
+
+
+  create table prod(pid int,pname varchar(15),pprice decimal(8,2),pstock int);
+
+
+  alter table prod add primary key(pid);
+
+  insert into prod value(101,'hdd',5200,10),(102,'cd',180,20),(103,'speaker',1500,5),(104,'keyboard',850,10),(105,'sd card',475,0);
+
+
+  select *from prod;
++-----+----------+---------+--------+
+| pid | pname    | pprice  | pstock |
++-----+----------+---------+--------+
+| 101 | hdd      | 5200.00 |     10 |
+| 102 | cd       |  180.00 |     20 |
+| 103 | speaker  | 1500.00 |      5 |
+| 104 | keyboard |  850.00 |     10 |
+| 105 | sd card  |  475.00 |      0 |
++-----+----------+---------+--------+
+
+
+  create view prod_over as select pname from prod where pstock=0;
+
+
+  select*from prod_over;
++---------+
+| pname   |
++---------+
+| sd card |
++---------+
+
+
+  create view prod_list as select pname from prod;
+
+
+  select *from prod_list;
++----------+
+| pname    |
++----------+
+| hdd      |
+| cd       |
+| speaker  |
+| keyboard |
+| sd card  |
++----------+
+
+
+  create view prod_price (product_name,product_price)as select pname,pprice from prod;
+
+
+  select*from prod_price;
++--------------+---------------+
+| product_name | product_price |
++--------------+---------------+
+| hdd          |       5200.00 |
+| cd           |        180.00 |
+| speaker      |       1500.00 |
+| keyboard     |        850.00 |
+| sd card      |        475.00 |
++--------------+---------------+
+
+
+  
+  create view prod_storage as select pname as stroage_devices from prod where pname like '%hdd%' or pname like '%cd%'or pname like '%sd card%';
+
+
+ 
+  
+  select *from prod_storage;
++-----------------+
+| stroage_devices |
++-----------------+
+| hdd             |
+| cd              |
+| sd card         |
++-----------------+
+
+
+  
+  create view prod_top2 as select pname ,pprice from prod order by pprice desc limit 0,2;
+
+
+  select *from prod_top2;
++---------+---------+
+| pname   | pprice  |
++---------+---------+
+| hdd     | 5200.00 |
+| speaker | 1500.00 |
++---------+---------+
+
+
+  create or replace view prod_top2 as select pname ,pprice from prod order by pprice desc limit 2;
+
+
+  select *from prod_top2;
++---------+---------+
+| pname   | pprice  |
++---------+---------+
+| hdd     | 5200.00 |
+| speaker | 1500.00 |
++---------+---------+
+
+
+  
+   alter view prod_top2 as select pname ,pprice from prod order by pprice desc limit 2;
+
+
+   alter view prod_top2 as select pname ,pprice,pstock from prod order by pprice desc limit 2;
+
+
+  select *from prod_top2;
++---------+---------+--------+
+| pname   | pprice  | pstock |
++---------+---------+--------+
+| hdd     | 5200.00 |     10 |
+| speaker | 1500.00 |      5 |
++---------+---------+--------+
+
+
+  
+  create or replace view prod_storage as select pname as stroage_devices from prod where pname like '%hdd%'or pname like '%cd%'or pname like '%sd card%' WITH CHECK OPTION;
+Query OK, 0 rows affected (0.22 sec)
+
+  select *from prod_storage;
++-----------------+
+| stroage_devices |
++-----------------+
+| hdd             |
+| cd              |
+| sd card         |
++-----------------+
+
+to know the all the views from the database :
+--  SHOW FULL TABLES IN  DATABASE_NAME where table_type like 'view';
+ 

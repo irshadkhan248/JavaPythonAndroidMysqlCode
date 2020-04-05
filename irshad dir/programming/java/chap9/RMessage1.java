@@ -1,0 +1,9 @@
+class RMessage1
+{
+public static void main(String args[])
+{
+String m[]={"irshad","shamshad","shadab","lal mohammed","khan","irshad","shamshad","shadab","lal mohammed","khan","irshad","shamshad","shadab","lal mohammed","khan","irshad","shamshad","shadab","lal mohammed","khan","irshad","shamshad","shadab","lal mohammed","khan","irshad","shamshad","shadab","lal mohammed","khan","irshad","shamshad","shadab","lal mohammed","khan","irshad","shamshad","shadab","lal mohammed","khan","irshad","shamshad","shadab","lal mohammed","khan","irshad","shamshad","shadab","lal mohammed","khan","irshad","shamshad","shadab","lal mohammed","khan","irshad","shamshad","shadab","lal mohammed","khan","irshad","shamshad","shadab","lal mohammed","khan","irshad","shamshad","shadab","lal mohammed","khan","irshad","shamshad","shadab","lal mohammed","khan","irshad","shamshad","shadab","lal mohammed","khan","irshad","shamshad","shadab","lal mohammed","khan","irshad","shamshad","shadab","lal mohammed","khan","irshad","shamshad","shadab","lal mohammed","khan","irshad","shamshad","shadab","lal mohammed","khan","irshad","shamshad","shadab","lal mohammed","khan","irshad","shamshad","shadab","lal mohammed","khan","irshad","shamshad","shadab","lal mohammed","khan","irshad","shamshad","shadab","lal mohammed","khan","irshad","shamshad","shadab","lal mohammed","khan","irshad","shamshad","shadab","lal mohammed","khan","irshad","shamshad","shadab","lal mohammed","khan","irshad","shamshad","shadab","lal mohammed","khan","irshad","shamshad","shadab","lal mohammed","khan","irshad","shamshad","shadab","lal mohammed","khan","irshad","shamshad","shadab","lal mohammed","khan","irshad","shamshad","shadab","lal mohammed","khan","irshad","shamshad","shadab","lal mohammed","khan","irshad","shamshad","shadab","lal mohammed","khan","irshad","shamshad","shadab","lal mohammed","khan"};
+int i=(int)(Math.random()*m.length);
+System.out.println(i);
+}
+}

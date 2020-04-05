@@ -1,0 +1,17 @@
+#wapp to accept id name phone email address and pin code from user
+
+s1=input("enter id ")
+id=int(s1) 
+name=input("enter name ")
+s3=input("enter phone number ")
+phone=int(s3)
+address=input('enter address ')
+email=input("enter email ")
+s6=input("enter pin code ")
+pincode=int(s6)
+print('Id       :',id)
+print('Name     :',name)
+print('Phone    :',phone)
+print('Address  :',address)
+print('Email    :',email)
+print("Pincode  :",pincode)

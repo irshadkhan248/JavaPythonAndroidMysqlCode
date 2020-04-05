@@ -1,0 +1,6 @@
+
+-- to see table data in different order every time.
+
+select*from table_name order by RAND();
+
+

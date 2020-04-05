@@ -1,0 +1,18 @@
+from tkinter import *
+from tkinter import messagebox
+win=Tk()
+win.tittle("Feedback")
+win.geometry("400x300+300+230")
+f=IntVar()
+f.set(2)
+rbF=Radiobutton(win,text=" Fantastic ",variable=f,value=1)
+rbE=Radiobutton(win,text=" Excelent ",variable=f,value=2)
+rbG=Radiobutton(win,text=" Good ",variable=f,value=3)
+
+rbF.grid(sticky"w");
+rbE.grid(sticky"w");
+rbG.grid(sticky"w");
+
+btnSubmit=button(win, text="Submit")
+btnSubmit.grid()
+win.mainloop()

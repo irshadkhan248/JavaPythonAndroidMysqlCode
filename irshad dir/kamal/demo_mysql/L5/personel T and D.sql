@@ -1,0 +1,10 @@
+create table if not exists personal(pers_d int primary key,name varchar(25),dept_id int,tittle varchar(25),salary int);
+replace into  personal value(1,'wendy',14,'supervisor',38000);
+replace into  personal value(2,'wally',7,'stock clerk',28000);
+replace into  personal value(3,'ray',7,'programmer',41000);
+replace into  personal value(4,'burton',14,'secretary',32000);
+replace into  personal value(5,'gordon',14,'president',78000);
+replace into  personal value(6,'jeff',7,'stock clerk',29000);
+replace into  personal value(7,'doris',7,'programmer',48000);
+replace into  personal value(8,'daisy',7,'secretary',33000);
+replace into  personal value(9,'bea',7,'accountant',40000);

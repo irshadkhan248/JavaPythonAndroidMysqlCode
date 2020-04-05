@@ -1,0 +1,9 @@
+import math 
+def sqrn(n1):
+	num1=n1*n1
+	print(num1)
+
+def sqrtn(n2):
+	num2=sqrt(n2)
+	print(num2)
+	

@@ -1,0 +1,5 @@
+f=open("C://demo//a.txt","a")
+f.write("\nking khan3")
+f.close()
+f=open("C://demo//a.txt","r")
+print(f.read())

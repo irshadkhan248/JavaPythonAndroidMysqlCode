@@ -1,0 +1,15 @@
+import java.util.*;
+public class A{
+public static Iterator reverse(List list){
+Collectons.reverse(list);
+return list.iterator();
+}
+public static void main(String args[]){
+List list=new ArrayList();
+list.add("1");
+list.add("2");
+list.add("3"); 
+for(Object obj:reverse(list))
+System.out.print(obj+",");
+}
+}

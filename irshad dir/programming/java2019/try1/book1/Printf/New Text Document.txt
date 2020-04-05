@@ -1,0 +1,8 @@
+class Temp2{
+public static void main(String args[]){
+Console c=System.console();
+int num=c.readLine("Enter Number:");
+char pw[];
+pw=c.readPassword("Enter password");
+}
+}

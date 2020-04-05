@@ -1,0 +1,3 @@
+sql: un and pwd
+Enter user-name:system
+Enter password:abc123

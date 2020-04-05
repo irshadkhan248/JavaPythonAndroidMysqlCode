@@ -1,0 +1,14 @@
+a=20
+print(a,type(a))
+b=2.05
+print(b,type(b))
+c=False
+print(c,type(c))
+d='irshad'
+print(d,type(d))
+e=[10,20,35]
+print(e,type(e))
+f={10,20,25}
+print(f,type(f))
+g=(10,20,25)
+print(g,type(g))

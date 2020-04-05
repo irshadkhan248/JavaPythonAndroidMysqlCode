@@ -1,0 +1,52 @@
+data source:C:\sql_demo\L9\case.sql
+
+case example:-
+
+select rno,name,case
+    -> when marks > 80 then 'grade A'
+    -> when marks > 70 then 'grade B'
+    -> else 'grade C'end as "GRADE" from stu_20;
++-----+-------+---------+
+| rno | name  | GRADE   |
++-----+-------+---------+
+|   1 | amit  | grade C |
+|   2 | sumit | grade C |
+|   3 | rumit | grade A |
+|   4 | simmy | grade B |
++-----+-------+---------+
+
+
+if example:
+select rno,name,if(marks>40,'pass','fail')from stu_20;
++-----+-------+----------------------------+
+| rno | name  | if(marks>40,'pass','fail') |
++-----+-------+----------------------------+
+|   1 | amit  | pass                       |
+|   2 | sumit | fail                       |
+|   3 | rumit | pass                       |
+|   4 | simmy | pass                       |
++-----+-------+----------------------------+
+
+coalesce example:
+
+
+select rno,name,coalesce(dphone,mphone,sphone)from stu_20;
++-----+-------+--------------------------------+
+| rno | name  | coalesce(dphone,mphone,sphone) |
++-----+-------+--------------------------------+
+|   1 | amit  |                            766 |
+|   2 | sumit |                            898 |
+|   3 | rumit |                            454 |
+|   4 | simmy |                           1000 |
++-----+-------+--------------------------------+
+
+
+isnull exapmle:
+
+select *from stu_20 where isnull(dphone);
++-----+-------+-------+--------+--------+--------+-------+
+| rno | name  | marks | sphone | dphone | mphone | eyear |
++-----+-------+-------+--------+--------+--------+-------+
+|   2 | sumit |    35 |    343 |   NULL |    898 |     2 |
+|   4 | simmy |    75 |    898 |   NULL |   NULL |     4 |
++-----+-------+-------+--------+--------+--------+-------+

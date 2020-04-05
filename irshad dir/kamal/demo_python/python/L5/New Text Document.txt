@@ -1,0 +1,11 @@
+wapp to define a function to find sum of digits
+
+dif digisum(n):
+	n=n%10
+	sum=sum+n
+	n=n//10
+	print(sum)
+	
+
+num=int(input("enter number"))
+digisum(num)

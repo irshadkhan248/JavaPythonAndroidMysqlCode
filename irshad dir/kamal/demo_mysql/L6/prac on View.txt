@@ -1,0 +1,107 @@
+create table prod(pid int,pname varchar(15),pprice decimal(8,2),pstock int);
+ 
+alter table prod add primary key(pid);
+ 
+insert into prod value(101,'hdd',5200,10),
+(102,'cd',180,20),
+(103,'speaker',1500,5),
+(104,'keyboard',850,10),
+(105,'sd card',475,0);
+
+select *from prod;
++-----+----------+---------+--------+
+| pid | pname    | pprice  | pstock |
++-----+----------+---------+--------+
+| 101 | hdd      | 5200.00 |     10 |
+| 102 | cd       |  180.00 |     20 |
+| 103 | speaker  | 1500.00 |      5 |
+| 104 | keyboard |  850.00 |     10 |
+| 105 | sd card  |  475.00 |      0 |
++-----+----------+---------+--------+
+
+1)create view prod_over as select pname from prod where pstock=0;
+
+select*from prod_over;
++---------+
+| pname   |
++---------+
+| sd card |
++---------+
+
+2)create view prod_list as select pname from prod;
+
+select *from prod_list;
++----------+
+| pname    |
++----------+
+| hdd      |
+| cd       |
+| speaker  |
+| keyboard |
+| sd card  |
++----------+
+
+3)create view prod_price (product_name,product_price)as select pname,pprice from prod;
+
+select*from prod_price;
++--------------+---------------+
+| product_name | product_price |
++--------------+---------------+
+| hdd          |       5200.00 |
+| cd           |        180.00 |
+| speaker      |       1500.00 |
+| keyboard     |        850.00 |
+| sd card      |        475.00 |
++--------------+---------------+
+
+
+4)create view prod_storage as select pname as stroage_devices,pprice from prod where pname in('hdd','cd','sd card','pen drive','floopy');
+
+select *from prod_storage;
++-----------------+---------+
+| stroage_devices | pprice  |
++-----------------+---------+
+| hdd             | 5200.00 |
+| cd              |  180.00 |
+| sd card         |  475.00 |
+| pen drive       |  250.00 |
++-----------------+---------+
+
+
+5)
+create view prod_storage as select pname as stroage_devices from prod where pname in('hdd','cd','sd card','pen drive','floopy') WITH CHECK OPTION;
+
+select *from prod_storage;
++-----------------+
+| stroage_devices |
++-----------------+
+| hdd             |
+| cd              |
+| sd card         |
++-----------------+
+
+
+
+
+
+6)create view prod_top2 as select pname ,pprice from prod order by pprice desc limit 0,2;
+
+select *from prod_top2;
++---------+---------+
+| pname   | pprice  |
++---------+---------+
+| hdd     | 5200.00 |
+| speaker | 1500.00 |
++---------+---------+
+
+
+
+7)alter view prod_top2 as select pname ,pprice,pstock from prod order by pprice desc limit 2;
+
+select *from prod_top2;
++---------+---------+--------+
+| pname   | pprice  | pstock |
++---------+---------+--------+
+| hdd     | 5200.00 |     10 |
+| speaker | 1500.00 |      5 |
++---------+---------+--------+

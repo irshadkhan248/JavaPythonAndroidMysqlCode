@@ -1,0 +1,15 @@
+class VarTest
+{
+public static void display(String... names)
+{
+for(String mynames:names)
+System.out.println(mynames);
+}
+public static void main(String args[])
+{
+display("anil");
+display("anil","jinil");
+display("anil","rita","seeta");
+display("anil","ali","kali");
+}
+}

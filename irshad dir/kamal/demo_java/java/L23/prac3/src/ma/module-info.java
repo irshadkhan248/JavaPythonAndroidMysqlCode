@@ -1,0 +1,4 @@
+module ma{
+
+exports aaj;
+}

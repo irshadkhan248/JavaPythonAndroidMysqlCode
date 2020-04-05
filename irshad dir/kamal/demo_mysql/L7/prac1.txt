@@ -1,0 +1,31 @@
+select rno,name,if(mark > 40,'pass','fail')result from stu_20;
++-----+-------+--------+
+| rno | name  | result |
++-----+-------+--------+
+|   1 | amit  | pass   |
+|   2 | sumit | fail   |
+|   3 | rumit | pass   |
+|   4 | simmy | pass   |
++-----+-------+--------+
+
+
+select rno,name,coalesce(dphone,mphone,sphone)contac from stu_20;
++-----+-------+--------+
+| rno | name  | contac |
++-----+-------+--------+
+|   1 | amit  |    766 |
+|   2 | sumit |    898 |
+|   3 | rumit |    454 |
+|   4 | simmy |    898 |
++-----+-------+--------+
+
+ select *from stu_20 where isnull(dphone);
++-----+-------+------+--------+--------+--------+
+| rno | name  | mark | sphone | dphone | mphone |
++-----+-------+------+--------+--------+--------+
+|   2 | sumit |   35 |    343 |   NULL |    898 |
+|   4 | simmy |   75 |    898 |   NULL |   NULL |
++-----+-------+------+--------+--------+--------+
+
+
+select rno,name case when mark>80 then 'grade a'  when mark>60 then 'grade b' else 'grade c' end as grade from stu_20;

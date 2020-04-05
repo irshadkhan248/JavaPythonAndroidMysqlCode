@@ -1,0 +1,1333 @@
+Microsoft Windows [Version 10.0.17763.316]
+(c) 2018 Microsoft Corporation. All rights reserved.
+
+C:\Program Files\MySQL\MySQL Server 8.0\bin>mysql -u root -pabc123
+mysql: [Warning] Using a password on the command line interface can be insecure.
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 11
+Server version: 8.0.11 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> create database 0103_db;
+Query OK, 1 row affected (0.19 sec)
+
+mysql> use 0103_db;
+Database changed
+mysql> source C:\sql_demo\L5\employeeTandD.sql
+Query OK, 0 rows affected (0.57 sec)
+
+ERROR 1054 (42S22): Unknown column 'm' in 'field list'
+ERROR 1054 (42S22): Unknown column 'm' in 'field list'
+ERROR 1054 (42S22): Unknown column 'f' in 'field list'
+ERROR 1054 (42S22): Unknown column 'm' in 'field list'
+ERROR 1054 (42S22): Unknown column 'f' in 'field list'
+ERROR 1054 (42S22): Unknown column 'm' in 'field list'
+ERROR 1054 (42S22): Unknown column 'm' in 'field list'
+ERROR 1054 (42S22): Unknown column 'f' in 'field list'
+ERROR 1054 (42S22): Unknown column 'm' in 'field list'
+ERROR 1054 (42S22): Unknown column 'm' in 'field list'
+mysql> create table employee(id int primary key,name varchar(25),dept_name varchar(25),salary int ,gengder char(1));
+ERROR 1050 (42S01): Table 'employee' already exists
+mysql> desc employee;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| id        | int(11)     | NO   | PRI | NULL    |       |
+| name      | varchar(25) | YES  |     | NULL    |       |
+| dept_name | varchar(25) | YES  |     | NULL    |       |
+| salary    | int(11)     | YES  |     | NULL    |       |
+| gengder   | char(1)     | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+5 rows in set (0.08 sec)
+
+mysql> select *from employee;
+Empty set (0.00 sec)
+
+mysql> drop table employee;
+Query OK, 0 rows affected (0.49 sec)
+
+mysql> source C:\sql_demo\L5\employeeTandD.sql
+Query OK, 0 rows affected (0.93 sec)
+
+Query OK, 1 row affected (0.13 sec)
+
+Query OK, 1 row affected (0.05 sec)
+
+Query OK, 1 row affected (0.11 sec)
+
+Query OK, 1 row affected (0.07 sec)
+
+Query OK, 1 row affected (0.06 sec)
+
+Query OK, 1 row affected (0.05 sec)
+
+Query OK, 1 row affected (0.09 sec)
+
+Query OK, 1 row affected (0.10 sec)
+
+Query OK, 1 row affected (0.15 sec)
+
+Query OK, 1 row affected (0.07 sec)
+
+mysql> select *from employee;
++----+---------+-----------+--------+---------+
+| id | name    | dept_name | salary | gengder |
++----+---------+-----------+--------+---------+
+|  1 | amit    | comps     |   4500 | m       |
+|  2 | sumit   | comps     |   5000 | m       |
+|  3 | reena   | comps     |   5000 | f       |
+|  4 | nikhil  | it        |   3500 | m       |
+|  5 | seema   | extc      |   2500 | f       |
+|  6 | rakesh  | it        |   4200 | m       |
+|  7 | rinkesh | comps     |   6200 | m       |
+|  8 | pooja   | extc      |   2200 | f       |
+|  9 | saurabh | it        |   4800 | m       |
+| 10 | rahul   | extc      |   5800 | m       |
++----+---------+-----------+--------+---------+
+10 rows in set (0.00 sec)
+
+mysql> insert into  employee  values(11,'rahul','extc',5800,'mi');
+ERROR 1406 (22001): Data too long for column 'gengder' at row 1
+mysql>
+mysql> select sum(salary)from employee;
++-------------+
+| sum(salary) |
++-------------+
+|       43700 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select sum(salary)total from employee;
++-------+
+| total |
++-------+
+| 43700 |
++-------+
+1 row in set (0.00 sec)
+
+mysql>
+mysql> select sum(salary*0.5)from employee;
++-----------------+
+| sum(salary*0.5) |
++-----------------+
+|         21850.0 |
++-----------------+
+1 row in set (0.00 sec)
+
+mysql> select sum(salary*0.5)bonus from employee;
++---------+
+| bonus   |
++---------+
+| 21850.0 |
++---------+
+1 row in set (0.00 sec)
+
+mysql> select sum(salary*0.05)bonus from employee;
++---------+
+| bonus   |
++---------+
+| 2185.00 |
++---------+
+1 row in set (0.00 sec)
+
+mysql> select sum(salary)from employee where salary>4500;
++-------------+
+| sum(salary) |
++-------------+
+|       26800 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select avg(salry)from employee;
+ERROR 1054 (42S22): Unknown column 'salry' in 'field list'
+mysql> select avg(salary)from employee;
++-------------+
+| avg(salary) |
++-------------+
+|   4370.0000 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select avg(salary)AVG from employee;
++-----------+
+| AVG       |
++-----------+
+| 4370.0000 |
++-----------+
+1 row in set (0.00 sec)
+
+mysql> drop table employee;
+Query OK, 0 rows affected (0.32 sec)
+
+mysql> source C:\sql_demo\L5\employeeTandD.sql
+Query OK, 0 rows affected (0.66 sec)
+
+Query OK, 1 row affected (0.06 sec)
+
+Query OK, 1 row affected (0.11 sec)
+
+Query OK, 1 row affected (0.07 sec)
+
+Query OK, 1 row affected (0.07 sec)
+
+Query OK, 1 row affected (0.07 sec)
+
+Query OK, 1 row affected (0.07 sec)
+
+Query OK, 1 row affected (0.15 sec)
+
+Query OK, 1 row affected (0.16 sec)
+
+Query OK, 1 row affected (0.07 sec)
+
+Query OK, 1 row affected (0.05 sec)
+
++-------------+
+| sum(salary) |
++-------------+
+|       43700 |
++-------------+
+1 row in set (0.00 sec)
+
++-------+
+| total |
++-------+
+| 43700 |
++-------+
+1 row in set (0.00 sec)
+
++---------+
+| bonus   |
++---------+
+| 21850.0 |
++---------+
+1 row in set (0.00 sec)
+
++-------------+
+| sum(salary) |
++-------------+
+|       26800 |
++-------------+
+1 row in set (0.00 sec)
+
++--------------+
+| avg (salary) |
++--------------+
+|    4370.0000 |
++--------------+
+1 row in set (0.00 sec)
+
+mysql> select max(salary),min(salary) from employee;
++-------------+-------------+
+| max(salary) | min(salary) |
++-------------+-------------+
+|        6200 |        2200 |
++-------------+-------------+
+1 row in set (0.00 sec)
+
+mysql> select max(name),min(name) from employee;
++-----------+-----------+
+| max(name) | min(name) |
++-----------+-----------+
+| sumit     | amit      |
++-----------+-----------+
+1 row in set (0.00 sec)
+
+mysql> select max(gender),min(gender) from employee;
+ERROR 1054 (42S22): Unknown column 'gender' in 'field list'
+mysql> select max(gender),min(gendger) from employee;
+ERROR 1054 (42S22): Unknown column 'gender' in 'field list'
+mysql> select max(gendger),min(gendger) from employee;
+ERROR 1054 (42S22): Unknown column 'gendger' in 'field list'
+mysql> select max(gengder),min(gengder ) from employee;
++--------------+---------------+
+| max(gengder) | min(gengder ) |
++--------------+---------------+
+| m            | f             |
++--------------+---------------+
+1 row in set (0.00 sec)
+
+mysql> alter table employee add doj TIMESTAMP;
+Query OK, 0 rows affected (1.38 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc employee;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| id        | int(11)     | NO   | PRI | NULL    |       |
+| name      | varchar(25) | YES  |     | NULL    |       |
+| dept_name | varchar(25) | YES  |     | NULL    |       |
+| salary    | int(11)     | YES  |     | NULL    |       |
+| gengder   | char(1)     | YES  |     | NULL    |       |
+| doj       | timestamp   | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+6 rows in set (0.06 sec)
+
+mysql> delete doj  from employee;
+ERROR 1109 (42S02): Unknown table 'doj' in MULTI DELETE
+mysql> drop doj  from employee;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'doj  from employee' at line 1
+mysql> delete from employee where cloumn_name='doj';
+ERROR 1054 (42S22): Unknown column 'cloumn_name' in 'where clause'
+mysql> alter table employee drop doj;
+Query OK, 0 rows affected (1.35 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table employee add doj TIMESTAMP default='2008-01-01 00:00:01';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '='2008-01-01 00:00:01'' at line 1
+mysql> alter table employee add doj TIMESTAMP default '2008-01-01 00:00:01';
+Query OK, 0 rows affected (1.34 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select *from employee;
++----+---------+-----------+--------+---------+---------------------+
+| id | name    | dept_name | salary | gengder | doj                 |
++----+---------+-----------+--------+---------+---------------------+
+|  1 | amit    | comps     |   4500 | m       | 2008-01-01 00:00:01 |
+|  2 | sumit   | comps     |   5000 | m       | 2008-01-01 00:00:01 |
+|  3 | reena   | comps     |   5000 | f       | 2008-01-01 00:00:01 |
+|  4 | nikhil  | it        |   3500 | m       | 2008-01-01 00:00:01 |
+|  5 | seema   | extc      |   2500 | f       | 2008-01-01 00:00:01 |
+|  6 | rakesh  | it        |   4200 | m       | 2008-01-01 00:00:01 |
+|  7 | rinkesh | comps     |   6200 | m       | 2008-01-01 00:00:01 |
+|  8 | pooja   | extc      |   2200 | f       | 2008-01-01 00:00:01 |
+|  9 | saurabh | it        |   4800 | m       | 2008-01-01 00:00:01 |
+| 10 | rahul   | extc      |   5800 | m       | 2008-01-01 00:00:01 |
++----+---------+-----------+--------+---------+---------------------+
+10 rows in set (0.00 sec)
+
+mysql> update employee set doj='2010-12-17 12:50:01' where id=2;
+Query OK, 1 row affected (0.15 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update employee set doj='2009-11-20 12:50:01' where id=3;
+Query OK, 1 row affected (0.12 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update employee set doj='2019-11-20 12:50:01' where id=4;
+Query OK, 1 row affected (0.15 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update employee set doj='2099-11-20 12:50:01' where id=5;
+ERROR 1292 (22007): Incorrect datetime value: '2099-11-20 12:50:01' for column 'doj' at row 1
+mysql> update employee set doj='2098-11-20 12:50:01' where id=5;
+ERROR 1292 (22007): Incorrect datetime value: '2098-11-20 12:50:01' for column 'doj' at row 1
+mysql> update employee set doj='2017-11-20 12:50:01' where id=5;
+Query OK, 1 row affected (0.23 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update employee set doj='2015-01-20 12:50:01' where id=6;
+Query OK, 1 row affected (0.21 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update employee set doj='2013-1-20 12:50:01' where id=7;
+Query OK, 1 row affected (0.26 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update employee set doj='2007-7-26 12:50:01' where id=8;
+Query OK, 1 row affected (0.16 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update employee set doj='2007-2-31 12:50:01' where id=9;
+ERROR 1292 (22007): Incorrect datetime value: '2007-2-31 12:50:01' for column 'doj' at row 1
+mysql> update employee set doj='2005-2-28 12:50:01' where id=9;
+Query OK, 1 row affected (0.19 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update employee set doj='2003-5-28 12:50:01' where id=10;
+Query OK, 1 row affected (0.15 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update employee set doj='2003-5-28 12:50:01' where id=11;
+Query OK, 0 rows affected (0.00 sec)
+Rows matched: 0  Changed: 0  Warnings: 0
+
+mysql> update employee set doj='2003-5-28 12:50:01' where id=11;
+Query OK, 0 rows affected (0.00 sec)
+Rows matched: 0  Changed: 0  Warnings: 0
+
+mysql> select *from employee;
++----+---------+-----------+--------+---------+---------------------+
+| id | name    | dept_name | salary | gengder | doj                 |
++----+---------+-----------+--------+---------+---------------------+
+|  1 | amit    | comps     |   4500 | m       | 2008-01-01 00:00:01 |
+|  2 | sumit   | comps     |   5000 | m       | 2010-12-17 12:50:01 |
+|  3 | reena   | comps     |   5000 | f       | 2009-11-20 12:50:01 |
+|  4 | nikhil  | it        |   3500 | m       | 2019-11-20 12:50:01 |
+|  5 | seema   | extc      |   2500 | f       | 2017-11-20 12:50:01 |
+|  6 | rakesh  | it        |   4200 | m       | 2015-01-20 12:50:01 |
+|  7 | rinkesh | comps     |   6200 | m       | 2013-01-20 12:50:01 |
+|  8 | pooja   | extc      |   2200 | f       | 2007-07-26 12:50:01 |
+|  9 | saurabh | it        |   4800 | m       | 2005-02-28 12:50:01 |
+| 10 | rahul   | extc      |   5800 | m       | 2003-05-28 12:50:01 |
++----+---------+-----------+--------+---------+---------------------+
+10 rows in set (0.00 sec)
+
+mysql> select max(doj),min(doj)from employee;
++---------------------+---------------------+
+| max(doj)            | min(doj)            |
++---------------------+---------------------+
+| 2019-11-20 12:50:01 | 2003-05-28 12:50:01 |
++---------------------+---------------------+
+1 row in set (0.00 sec)
+
+mysql> select max(doj),min(doj)from employee group by dept_name;
++---------------------+---------------------+
+| max(doj)            | min(doj)            |
++---------------------+---------------------+
+| 2013-01-20 12:50:01 | 2008-01-01 00:00:01 |
+| 2019-11-20 12:50:01 | 2005-02-28 12:50:01 |
+| 2017-11-20 12:50:01 | 2003-05-28 12:50:01 |
++---------------------+---------------------+
+3 rows in set (0.00 sec)
+
+mysql> select dept_name,max(doj),min(doj)from employee group by dept_name;
++-----------+---------------------+---------------------+
+| dept_name | max(doj)            | min(doj)            |
++-----------+---------------------+---------------------+
+| comps     | 2013-01-20 12:50:01 | 2008-01-01 00:00:01 |
+| it        | 2019-11-20 12:50:01 | 2005-02-28 12:50:01 |
+| extc      | 2017-11-20 12:50:01 | 2003-05-28 12:50:01 |
++-----------+---------------------+---------------------+
+3 rows in set (0.00 sec)
+
+mysql> select dept_name,max(doj),min(doj)from employee group by dept_name order by dept_name;
++-----------+---------------------+---------------------+
+| dept_name | max(doj)            | min(doj)            |
++-----------+---------------------+---------------------+
+| comps     | 2013-01-20 12:50:01 | 2008-01-01 00:00:01 |
+| extc      | 2017-11-20 12:50:01 | 2003-05-28 12:50:01 |
+| it        | 2019-11-20 12:50:01 | 2005-02-28 12:50:01 |
++-----------+---------------------+---------------------+
+3 rows in set (0.00 sec)
+
+mysql> select dept_name,max(doj),min(doj)from employee group by gendger order by dept_name;
+ERROR 1054 (42S22): Unknown column 'gendger' in 'group statement'
+mysql> select dept_name,max(doj),min(doj)from employee group by gengder order by dept_name;
++-----------+---------------------+---------------------+
+| dept_name | max(doj)            | min(doj)            |
++-----------+---------------------+---------------------+
+| comps     | 2019-11-20 12:50:01 | 2003-05-28 12:50:01 |
+| comps     | 2017-11-20 12:50:01 | 2007-07-26 12:50:01 |
++-----------+---------------------+---------------------+
+2 rows in set (0.00 sec)
+
+mysql> select dept_name,max(doj),min(doj),gengder from employee group by gengder order by dept_name;
++-----------+---------------------+---------------------+---------+
+| dept_name | max(doj)            | min(doj)            | gengder |
++-----------+---------------------+---------------------+---------+
+| comps     | 2019-11-20 12:50:01 | 2003-05-28 12:50:01 | m       |
+| comps     | 2017-11-20 12:50:01 | 2007-07-26 12:50:01 | f       |
++-----------+---------------------+---------------------+---------+
+2 rows in set (0.00 sec)
+
+mysql> select dept_name,max(doj),min(doj),gengder from employee group by dept_name order by dept_name;
++-----------+---------------------+---------------------+---------+
+| dept_name | max(doj)            | min(doj)            | gengder |
++-----------+---------------------+---------------------+---------+
+| comps     | 2013-01-20 12:50:01 | 2008-01-01 00:00:01 | m       |
+| extc      | 2017-11-20 12:50:01 | 2003-05-28 12:50:01 | f       |
+| it        | 2019-11-20 12:50:01 | 2005-02-28 12:50:01 | m       |
++-----------+---------------------+---------------------+---------+
+3 rows in set (0.00 sec)
+
+mysql> select dept_name,max(doj),min(doj) from employee group by dept_name order by dept_name;
++-----------+---------------------+---------------------+
+| dept_name | max(doj)            | min(doj)            |
++-----------+---------------------+---------------------+
+| comps     | 2013-01-20 12:50:01 | 2008-01-01 00:00:01 |
+| extc      | 2017-11-20 12:50:01 | 2003-05-28 12:50:01 |
+| it        | 2019-11-20 12:50:01 | 2005-02-28 12:50:01 |
++-----------+---------------------+---------------------+
+3 rows in set (0.00 sec)
+
+mysql> select dept_name,max(doj),min(doj) from employee group by dept_name having salary>4500 order by dept_name;
+ERROR 1054 (42S22): Unknown column 'salary' in 'having clause'
+mysql> select dept_name department,sum(salary)from employee group by dept_name;
++------------+-------------+
+| department | sum(salary) |
++------------+-------------+
+| comps      |       20700 |
+| it         |       12500 |
+| extc       |       10500 |
++------------+-------------+
+3 rows in set (0.00 sec)
+
+mysql> select sum(salary)from employee order by dept_name having sum(salary)>11000;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'having sum(salary)>11000' at line 1
+mysql> select dept_name,sum(salary)from employee order by dept_name having sum(salary)>11000;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'having sum(salary)>11000' at line 1
+mysql> select dept_name,sum(salary)from employee order by dept_name,having sum(salary) > 11000;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'having sum(salary) > 11000' at line 1
+mysql> select dept_name,sum(salary)from employee order by dept_name having sum(salary) > 11000;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'having sum(salary) > 11000' at line 1
+mysql> select dept_name,sum(salary)from employee order by dept_name;
++-----------+-------------+
+| dept_name | sum(salary) |
++-----------+-------------+
+| comps     |       43700 |
++-----------+-------------+
+1 row in set (0.00 sec)
+
+mysql> select dept_name,sum(salary)from employee group by dept_name having sum(salary) > 11000;
++-----------+-------------+
+| dept_name | sum(salary) |
++-----------+-------------+
+| comps     |       20700 |
+| it        |       12500 |
++-----------+-------------+
+2 rows in set (0.00 sec)
+
+mysql> select dept_name,sum(salary)from employee group by dept_name having sum(salary) > 12000;
++-----------+-------------+
+| dept_name | sum(salary) |
++-----------+-------------+
+| comps     |       20700 |
+| it        |       12500 |
++-----------+-------------+
+2 rows in set (0.00 sec)
+
+mysql> select dept_name,sum(salary)from employee group by dept_name having sum(salary) > 12500;
++-----------+-------------+
+| dept_name | sum(salary) |
++-----------+-------------+
+| comps     |       20700 |
++-----------+-------------+
+1 row in set (0.00 sec)
+
+mysql> select dept_name,sum(salary)from employee group by dept_name having sum(salary) => 12500;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '=> 12500' at line 1
+mysql> select dept_name,sum(salary)from employee group by dept_name having sum(salary) > 12500;
++-----------+-------------+
+| dept_name | sum(salary) |
++-----------+-------------+
+| comps     |       20700 |
++-----------+-------------+
+1 row in set (0.00 sec)
+
+mysql> select dept_name,sum(salary)from employee group by dept_name having sum(salary) > 11000;
++-----------+-------------+
+| dept_name | sum(salary) |
++-----------+-------------+
+| comps     |       20700 |
+| it        |       12500 |
++-----------+-------------+
+2 rows in set (0.00 sec)
+
+mysql> select dept_name,sum(salary)from employee group by dept_name where sum(salary) > 11000;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where sum(salary) > 11000' at line 1
+mysql> select dept_name,sum(salary)from employee group by dept_name having sum(salary) > 11000;
++-----------+-------------+
+| dept_name | sum(salary) |
++-----------+-------------+
+| comps     |       20700 |
+| it        |       12500 |
++-----------+-------------+
+2 rows in set (0.00 sec)
+
+mysql> select dept_name,gengder,sum(salary) from employee group by gengder;
++-----------+---------+-------------+
+| dept_name | gengder | sum(salary) |
++-----------+---------+-------------+
+| comps     | m       |       34000 |
+| comps     | f       |        9700 |
++-----------+---------+-------------+
+2 rows in set (0.00 sec)
+
+mysql> select dept_name,gengder,sum(salary) from employee group by gengder,dept_name;
++-----------+---------+-------------+
+| dept_name | gengder | sum(salary) |
++-----------+---------+-------------+
+| comps     | m       |       15700 |
+| comps     | f       |        5000 |
+| it        | m       |       12500 |
+| extc      | f       |        4700 |
+| extc      | m       |        5800 |
++-----------+---------+-------------+
+5 rows in set (0.00 sec)
+
+mysql> select dept_name,gengder,sum(salary) from employee group by gengder,dept_name order by grngder;
+ERROR 1054 (42S22): Unknown column 'grngder' in 'order clause'
+mysql> select dept_name,gengder,sum(salary) from employee group by gengder,dept_name order by gengder;
++-----------+---------+-------------+
+| dept_name | gengder | sum(salary) |
++-----------+---------+-------------+
+| comps     | f       |        5000 |
+| extc      | f       |        4700 |
+| comps     | m       |       15700 |
+| extc      | m       |        5800 |
+| it        | m       |       12500 |
++-----------+---------+-------------+
+5 rows in set (0.00 sec)
+
+mysql> select dept_name,gengder,sum(salary) from employee group by gengder,dept_name order by gengder desc;
++-----------+---------+-------------+
+| dept_name | gengder | sum(salary) |
++-----------+---------+-------------+
+| comps     | m       |       15700 |
+| extc      | m       |        5800 |
+| it        | m       |       12500 |
+| comps     | f       |        5000 |
+| extc      | f       |        4700 |
++-----------+---------+-------------+
+5 rows in set (0.00 sec)
+
+mysql> select dept_name,gengder,sum(salary) from employee group by gengder,dept_name order by gengder,sum(salary) desc;
++-----------+---------+-------------+
+| dept_name | gengder | sum(salary) |
++-----------+---------+-------------+
+| comps     | f       |        5000 |
+| extc      | f       |        4700 |
+| comps     | m       |       15700 |
+| it        | m       |       12500 |
+| extc      | m       |        5800 |
++-----------+---------+-------------+
+5 rows in set (0.00 sec)
+
+mysql> select sum(salary),dept_name from employee where gengder='m' group by dept_name having sum(salary)>8000;
++-------------+-----------+
+| sum(salary) | dept_name |
++-------------+-----------+
+|       15700 | comps     |
+|       12500 | it        |
++-------------+-----------+
+2 rows in set (0.00 sec)
+
+mysql> select sum(salary),dept_name,gengder from employee where gengder='m' group by dept_name having sum(salary)>8000;
++-------------+-----------+---------+
+| sum(salary) | dept_name | gengder |
++-------------+-----------+---------+
+|       15700 | comps     | m       |
+|       12500 | it        | m       |
++-------------+-----------+---------+
+2 rows in set (0.00 sec)
+
+mysql> select sum(salary),dept_name,gengder from employee where gengder='m' group by dept_name,gengder having sum(salary)>8000;
++-------------+-----------+---------+
+| sum(salary) | dept_name | gengder |
++-------------+-----------+---------+
+|       15700 | comps     | m       |
+|       12500 | it        | m       |
++-------------+-----------+---------+
+2 rows in set (0.00 sec)
+
+mysql> select GREATEST(salary)from employee;
+ERROR 1582 (42000): Incorrect parameter count in the call to native function 'GREATEST'
+mysql> select GREATEST(1,7,8,10)from employee;
++--------------------+
+| GREATEST(1,7,8,10) |
++--------------------+
+|                 10 |
+|                 10 |
+|                 10 |
+|                 10 |
+|                 10 |
+|                 10 |
+|                 10 |
+|                 10 |
+|                 10 |
+|                 10 |
++--------------------+
+10 rows in set (0.05 sec)
+
+mysql> select GREATEST(1,7,8,10)greatest from employee;
++----------+
+| greatest |
++----------+
+|       10 |
+|       10 |
+|       10 |
+|       10 |
+|       10 |
+|       10 |
+|       10 |
+|       10 |
+|       10 |
+|       10 |
++----------+
+10 rows in set (0.00 sec)
+
+mysql> select GREATEST(1,7,8,10);
++--------------------+
+| GREATEST(1,7,8,10) |
++--------------------+
+|                 10 |
++--------------------+
+1 row in set (0.00 sec)
+
+mysql> select GREATEST(salary);
+ERROR 1582 (42000): Incorrect parameter count in the call to native function 'GREATEST'
+mysql> select leaST(20,35,10);
++-----------------+
+| leaST(20,35,10) |
++-----------------+
+|              10 |
++-----------------+
+1 row in set (0.03 sec)
+
+mysql> select leaST(20,35,10)from employee;
++-----------------+
+| leaST(20,35,10) |
++-----------------+
+|              10 |
+|              10 |
+|              10 |
+|              10 |
+|              10 |
+|              10 |
+|              10 |
+|              10 |
+|              10 |
+|              10 |
++-----------------+
+10 rows in set (0.00 sec)
+
+mysql> create table sal(sal int);
+Query OK, 0 rows affected (0.87 sec)
+
+mysql> insert sal(100);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '100)' at line 1
+mysql> insert sal values(100);
+Query OK, 1 row affected (0.15 sec)
+
+mysql> insert sal values(100);
+Query OK, 1 row affected (0.22 sec)
+
+mysql> insert sal values(100);
+Query OK, 1 row affected (0.08 sec)
+
+mysql> insert sal values(100);
+Query OK, 1 row affected (0.11 sec)
+
+mysql> insert sal values(100);
+Query OK, 1 row affected (0.11 sec)
+
+mysql> insert sal values(100);
+Query OK, 1 row affected (0.11 sec)
+
+mysql> insert sal values(100);
+Query OK, 1 row affected (0.21 sec)
+
+mysql> insert sal values(100);
+Query OK, 1 row affected (0.10 sec)
+
+mysql> insert sal values(100);
+Query OK, 1 row affected (0.10 sec)
+
+mysql> insert sal values();
+Query OK, 1 row affected (0.06 sec)
+
+mysql> select *from sal;
++------+
+| sal  |
++------+
+|  100 |
+|  100 |
+|  100 |
+|  100 |
+|  100 |
+|  100 |
+|  100 |
+|  100 |
+|  100 |
+| NULL |
++------+
+10 rows in set (0.00 sec)
+
+mysql> select sum(sal)from sal;
++----------+
+| sum(sal) |
++----------+
+|      900 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> select columns()from sal;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '()from sal' at line 1
+mysql> select columns(*)from sal;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(*)from sal' at line 1
+mysql> select count(*)from sal;
++----------+
+| count(*) |
++----------+
+|       10 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> select count()from sal;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')from sal' at line 1
+mysql> select count(*)from sal where sal is not null;
++----------+
+| count(*) |
++----------+
+|        9 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> select *from sal where sal is not null;
++------+
+| sal  |
++------+
+|  100 |
+|  100 |
+|  100 |
+|  100 |
+|  100 |
+|  100 |
+|  100 |
+|  100 |
+|  100 |
++------+
+9 rows in set (0.00 sec)
+
+mysql> select count(*),count(sal)from sal where sal;
++----------+------------+
+| count(*) | count(sal) |
++----------+------------+
+|        9 |          9 |
++----------+------------+
+1 row in set (0.00 sec)
+
+mysql> select count(*),count(sal)from sal;
++----------+------------+
+| count(*) | count(sal) |
++----------+------------+
+|       10 |          9 |
++----------+------------+
+1 row in set (0.00 sec)
+
+mysql> source C:\sql_demo\L5\supplier.sql
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'varcahr(25))' at line 1
+ERROR 1146 (42S02): Table '0103_db.supplier' doesn't exist
+ERROR 1146 (42S02): Table '0103_db.supplier' doesn't exist
+ERROR 1146 (42S02): Table '0103_db.supplier' doesn't exist
+ERROR 1146 (42S02): Table '0103_db.supplier' doesn't exist
+ERROR 1146 (42S02): Table '0103_db.supplier' doesn't exist
+mysql> use 0103_db;
+Database changed
+mysql> source C:\sql_demo\L5\supplier.sql
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'varcahr(25))' at line 1
+ERROR 1146 (42S02): Table '0103_db.supplier' doesn't exist
+ERROR 1146 (42S02): Table '0103_db.supplier' doesn't exist
+ERROR 1146 (42S02): Table '0103_db.supplier' doesn't exist
+ERROR 1146 (42S02): Table '0103_db.supplier' doesn't exist
+ERROR 1146 (42S02): Table '0103_db.supplier' doesn't exist
+mysql> source C:\sql_demo\L5\supplier.sql
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'varcahr(25))' at line 1
+ERROR 1146 (42S02): Table '0103_db.supplier' doesn't exist
+ERROR 1146 (42S02): Table '0103_db.supplier' doesn't exist
+ERROR 1146 (42S02): Table '0103_db.supplier' doesn't exist
+ERROR 1146 (42S02): Table '0103_db.supplier' doesn't exist
+ERROR 1146 (42S02): Table '0103_db.supplier' doesn't exist
+mysql> create table supplier(id int primary key,name varchar(20),jd date,state varcahr(25));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'varcahr(25))' at line 1
+mysql> source C:\sql_demo\L5\supplier.sql
+Query OK, 0 rows affected (1.05 sec)
+
+Query OK, 1 row affected (0.06 sec)
+
+Query OK, 1 row affected (0.13 sec)
+
+Query OK, 1 row affected (0.07 sec)
+
+Query OK, 1 row affected (0.11 sec)
+
+Query OK, 1 row affected (0.09 sec)
+
+mysql> select *from supplier;
++----+----------------+------------+-------+
+| id | name           | jd         | state |
++----+----------------+------------+-------+
+|  1 | variety        | 2010-02-21 | mah   |
+|  2 | shyam telecom  | 2012-02-18 | raj   |
+|  3 | giga byte      | 2016-08-18 | mah   |
+|  4 | amazon         | 2016-10-21 | NULL  |
+|  5 | zee electronic | NULL       | NULL  |
++----+----------------+------------+-------+
+5 rows in set (0.00 sec)
+
+mysql> select count(*),count(state),count(id)from supplier;
++----------+--------------+-----------+
+| count(*) | count(state) | count(id) |
++----------+--------------+-----------+
+|        5 |            3 |         5 |
++----------+--------------+-----------+
+1 row in set (0.00 sec)
+
+mysql> select avg(id)from supplier;
++---------+
+| avg(id) |
++---------+
+|  3.0000 |
++---------+
+1 row in set (0.00 sec)
+
+mysql> select avg(name)from supplier;
++-----------+
+| avg(name) |
++-----------+
+|         0 |
++-----------+
+1 row in set, 5 warnings (0.00 sec)
+
+mysql> select min(name),max(state)from supplier;
++-----------+------------+
+| min(name) | max(state) |
++-----------+------------+
+| amazon    | raj        |
++-----------+------------+
+1 row in set (0.00 sec)
+
+mysql> select* from supplier;
++----+----------------+------------+-------+
+| id | name           | jd         | state |
++----+----------------+------------+-------+
+|  1 | variety        | 2010-02-21 | mah   |
+|  2 | shyam telecom  | 2012-02-18 | raj   |
+|  3 | giga byte      | 2016-08-18 | mah   |
+|  4 | amazon         | 2016-10-21 | NULL  |
+|  5 | zee electronic | NULL       | NULL  |
++----+----------------+------------+-------+
+5 rows in set (0.00 sec)
+
+mysql> strcmp('abc','abc');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'strcmp('abc','abc')' at line 1
+mysql> select count(*)from supplier group by state;
++----------+
+| count(*) |
++----------+
+|        2 |
+|        1 |
+|        2 |
++----------+
+3 rows in set (0.00 sec)
+
+mysql> select count(*),state from supplier group by state;
++----------+-------+
+| count(*) | state |
++----------+-------+
+|        2 | mah   |
+|        1 | raj   |
+|        2 | NULL  |
++----------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select max(name) from supplier;
++----------------+
+| max(name)      |
++----------------+
+| zee electronic |
++----------------+
+1 row in set (0.00 sec)
+
+mysql> select max(name) from supplier group by state;
++----------------+
+| max(name)      |
++----------------+
+| variety        |
+| shyam telecom  |
+| zee electronic |
++----------------+
+3 rows in set (0.00 sec)
+
+mysql> select max(name),state from supplier group by state;
++----------------+-------+
+| max(name)      | state |
++----------------+-------+
+| variety        | mah   |
+| shyam telecom  | raj   |
+| zee electronic | NULL  |
++----------------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select max(name),state from supplier group by state having count(*)>1;
++----------------+-------+
+| max(name)      | state |
++----------------+-------+
+| variety        | mah   |
+| zee electronic | NULL  |
++----------------+-------+
+2 rows in set (0.00 sec)
+
+mysql> select max(name)from supplier group by state having count(*)>1;
++----------------+
+| max(name)      |
++----------------+
+| variety        |
+| zee electronic |
++----------------+
+2 rows in set (0.00 sec)
+
+mysql> select max(jd)from supplier where state is not null group by state;
++------------+
+| max(jd)    |
++------------+
+| 2016-08-18 |
+| 2012-02-18 |
++------------+
+2 rows in set (0.00 sec)
+
+mysql> select*from supplier;
++----+----------------+------------+-------+
+| id | name           | jd         | state |
++----+----------------+------------+-------+
+|  1 | variety        | 2010-02-21 | mah   |
+|  2 | shyam telecom  | 2012-02-18 | raj   |
+|  3 | giga byte      | 2016-08-18 | mah   |
+|  4 | amazon         | 2016-10-21 | NULL  |
+|  5 | zee electronic | NULL       | NULL  |
++----+----------------+------------+-------+
+5 rows in set (0.00 sec)
+
+mysql> select max(jd),state from supplier where state is not null group by state;
++------------+-------+
+| max(jd)    | state |
++------------+-------+
+| 2016-08-18 | mah   |
+| 2012-02-18 | raj   |
++------------+-------+
+2 rows in set (0.00 sec)
+
+mysql> mysql> create table user(id int primary key,name varchar(30),course_id int);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'mysql> create table user(id int primary key,name varchar(30),course_id int)' at line 1
+mysql> create table user(id int primary key,name varchar(30),course_id int);
+Query OK, 0 rows affected (0.47 sec)
+
+mysql> create table course(c_id int primary key,name varchar(30));
+Query OK, 0 rows affected (0.53 sec)
+
+mysql> alter table user add foreign key(course_id)references user(cid);
+ERROR 1215 (HY000): Cannot add foreign key constraint
+mysql> alter table user add foreign key(course_id)references user(c_id);
+ERROR 1215 (HY000): Cannot add foreign key constraint
+mysql> select*from user
+    -> ;
+Empty set (0.00 sec)
+
+mysql> desc user
+    -> ;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| id        | int(11)     | NO   | PRI | NULL    |       |
+| name      | varchar(30) | YES  |     | NULL    |       |
+| course_id | int(11)     | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+3 rows in set (0.07 sec)
+
+mysql> desc course;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| c_id  | int(11)     | NO   | PRI | NULL    |       |
+| name  | varchar(30) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> alter table user add foreign key(c_id)references user(course_id);
+ERROR 1072 (42000): Key column 'c_id' doesn't exist in table
+mysql> alter table user add foreign key(id)references user(c_id);
+ERROR 1215 (HY000): Cannot add foreign key constraint
+mysql> alter table user add foreign key(course_id)references course(c_id);
+Query OK, 0 rows affected (1.74 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc user;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| id        | int(11)     | NO   | PRI | NULL    |       |
+| name      | varchar(30) | YES  |     | NULL    |       |
+| course_id | int(11)     | YES  | MUL | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+3 rows in set (0.02 sec)
+
+mysql> select * from infromation_schema.table_constraints where table_name='user';
+ERROR 1049 (42000): Unknown database 'infromation_schema'
+mysql> select * from information_schema.table_constraints where table_name='user';
++--------------------+-------------------+-----------------+--------------+------------+-----------------+
+| CONSTRAINT_CATALOG | CONSTRAINT_SCHEMA | CONSTRAINT_NAME | TABLE_SCHEMA | TABLE_NAME | CONSTRAINT_TYPE |
++--------------------+-------------------+-----------------+--------------+------------+-----------------+
+| def                | mysql             | PRIMARY         | mysql        | user       | PRIMARY KEY     |
+| def                | borivli5          | PRIMARY         | borivli5     | user       | PRIMARY KEY     |
+| def                | 28_2_db           | PRIMARY         | 28_2_db      | user       | PRIMARY KEY     |
+| def                | 0103_db           | PRIMARY         | 0103_db      | user       | PRIMARY KEY     |
+| def                | borivli5          | fk1             | borivli5     | user       | FOREIGN KEY     |
+| def                | 28_2_db           | user_ibfk_1     | 28_2_db      | user       | FOREIGN KEY     |
+| def                | 0103_db           | user_ibfk_1     | 0103_db      | user       | FOREIGN KEY     |
++--------------------+-------------------+-----------------+--------------+------------+-----------------+
+7 rows in set, 2 warnings (0.11 sec)
+
+mysql> rename table user to user1;
+Query OK, 0 rows affected (0.43 sec)
+
+mysql> select * from information_schema.table_constraints where table_name='user1';
++--------------------+-------------------+-----------------+--------------+------------+-----------------+
+| CONSTRAINT_CATALOG | CONSTRAINT_SCHEMA | CONSTRAINT_NAME | TABLE_SCHEMA | TABLE_NAME | CONSTRAINT_TYPE |
++--------------------+-------------------+-----------------+--------------+------------+-----------------+
+| def                | 0103_db           | PRIMARY         | 0103_db      | user1      | PRIMARY KEY     |
+| def                | 0103_db           | user1_ibfk_1    | 0103_db      | user1      | FOREIGN KEY     |
++--------------------+-------------------+-----------------+--------------+------------+-----------------+
+2 rows in set, 2 warnings (0.06 sec)
+
+mysql> ^C
+mysql> ^C
+mysql> select * from information_schema.table_constraints where table_name='course';
++--------------------+-------------------+-----------------+--------------+------------+-----------------+
+| CONSTRAINT_CATALOG | CONSTRAINT_SCHEMA | CONSTRAINT_NAME | TABLE_SCHEMA | TABLE_NAME | CONSTRAINT_TYPE |
++--------------------+-------------------+-----------------+--------------+------------+-----------------+
+| def                | 0103_db           | PRIMARY         | 0103_db      | course     | PRIMARY KEY     |
+| def                | 28_2_db           | PRIMARY         | 28_2_db      | course     | PRIMARY KEY     |
+| def                | borivli5          | PRIMARY         | borivli5     | course     | PRIMARY KEY     |
++--------------------+-------------------+-----------------+--------------+------------+-----------------+
+3 rows in set, 2 warnings (0.01 sec)
+
+mysql> rename table course to course1;
+Query OK, 0 rows affected (0.43 sec)
+
+mysql> select * from information_schema.table_constraints where table_name='course1';
++--------------------+-------------------+-----------------+--------------+------------+-----------------+
+| CONSTRAINT_CATALOG | CONSTRAINT_SCHEMA | CONSTRAINT_NAME | TABLE_SCHEMA | TABLE_NAME | CONSTRAINT_TYPE |
++--------------------+-------------------+-----------------+--------------+------------+-----------------+
+| def                | 0103_db           | PRIMARY         | 0103_db      | course1    | PRIMARY KEY     |
++--------------------+-------------------+-----------------+--------------+------------+-----------------+
+1 row in set, 2 warnings (0.01 sec)
+
+mysql> desc course1;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| c_id  | int(11)     | NO   | PRI | NULL    |       |
+| name  | varchar(30) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> alter table user drop froeign key user1_ibfk_1;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'key user1_ibfk_1' at line 1
+mysql> alter table user drop foreign key user1_ibfk_1;
+ERROR 1146 (42S02): Table '0103_db.user' doesn't exist
+mysql> alter table user1 drop foreign key user1_ibfk_1;
+Query OK, 0 rows affected (0.15 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table user1 add constraint fk1 foreign key(course_id)references course1(c_id);
+Query OK, 0 rows affected (1.25 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select *from information_schema.table_constraints where table_name='user1';
++--------------------+-------------------+-----------------+--------------+------------+-----------------+
+| CONSTRAINT_CATALOG | CONSTRAINT_SCHEMA | CONSTRAINT_NAME | TABLE_SCHEMA | TABLE_NAME | CONSTRAINT_TYPE |
++--------------------+-------------------+-----------------+--------------+------------+-----------------+
+| def                | 0103_db           | PRIMARY         | 0103_db      | user1      | PRIMARY KEY     |
+| def                | 0103_db           | fk1             | 0103_db      | user1      | FOREIGN KEY     |
++--------------------+-------------------+-----------------+--------------+------------+-----------------+
+2 rows in set, 2 warnings (0.01 sec)
+
+mysql> alter table user1 drop foreign key fk1;
+Query OK, 0 rows affected (0.23 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table user1 add constraint irshad_fk foreign key(course_id)references course1(c_id);
+Query OK, 0 rows affected (1.58 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select *from information_schema.table_constraints where table_name='user1';
++--------------------+-------------------+-----------------+--------------+------------+-----------------+
+| CONSTRAINT_CATALOG | CONSTRAINT_SCHEMA | CONSTRAINT_NAME | TABLE_SCHEMA | TABLE_NAME | CONSTRAINT_TYPE |
++--------------------+-------------------+-----------------+--------------+------------+-----------------+
+| def                | 0103_db           | PRIMARY         | 0103_db      | user1      | PRIMARY KEY     |
+| def                | 0103_db           | irshad_fk       | 0103_db      | user1      | FOREIGN KEY     |
++--------------------+-------------------+-----------------+--------------+------------+-----------------+
+2 rows in set, 2 warnings (0.01 sec)
+
+mysql> insert course value(1,'android'),(2,'python'),(3,'java'),(4,'mysql');
+ERROR 1146 (42S02): Table '0103_db.course' doesn't exist
+mysql> insert course1 value(1,'android'),(2,'python'),(3,'java'),(4,'mysql');
+Query OK, 4 rows affected (0.19 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> insert user1 value(1,'amit',1),(2,'smit',null),(3,'vishal',1),(4,'sumit',3),(5,'suman',null);
+Query OK, 5 rows affected (0.08 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> select *from user1
+    -> ;
++----+--------+-----------+
+| id | name   | course_id |
++----+--------+-----------+
+|  1 | amit   |         1 |
+|  2 | smit   |      NULL |
+|  3 | vishal |         1 |
+|  4 | sumit  |         3 |
+|  5 | suman  |      NULL |
++----+--------+-----------+
+5 rows in set (0.00 sec)
+
+mysql> select*from course1;
++------+---------+
+| c_id | name    |
++------+---------+
+|    1 | android |
+|    2 | python  |
+|    3 | java    |
+|    4 | mysql   |
++------+---------+
+4 rows in set (0.00 sec)
+
+mysql> select*fromcourse1;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'fromcourse1' at line 1
+mysql> select*from course1;
++------+---------+
+| c_id | name    |
++------+---------+
+|    1 | android |
+|    2 | python  |
+|    3 | java    |
+|    4 | mysql   |
++------+---------+
+4 rows in set (0.00 sec)
+
+mysql> select user1.name,course1.name from user1 join course1 where user1.cid=course1.course_id;
+ERROR 1054 (42S22): Unknown column 'user1.cid' in 'where clause'
+mysql> select user1.name,course1.name from user1 join course1 where user1.course_id=course1.course_id;
+ERROR 1054 (42S22): Unknown column 'course1.course_id' in 'where clause'
+mysql> select user1.name,course1.name from user1 join course1 where user.course_id=course.c_id;
+ERROR 1054 (42S22): Unknown column 'user.course_id' in 'where clause'
+mysql> desc course1;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| c_id  | int(11)     | NO   | PRI | NULL    |       |
+| name  | varchar(30) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> desc user1;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| id        | int(11)     | NO   | PRI | NULL    |       |
+| name      | varchar(30) | YES  |     | NULL    |       |
+| course_id | int(11)     | YES  | MUL | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select course1.name,user1.name from course1,user1 where user1.course_id=course1.c_id;
++---------+--------+
+| name    | name   |
++---------+--------+
+| android | amit   |
+| android | vishal |
+| java    | sumit  |
++---------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select course1.name,user1.name from course1 right join user1 where user1.course_id=course1.c_id;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where user1.course_id=course1.c_id' at line 1
+mysql> select course1.name,user1.name from course1 right join user1 on user1.course_id=course1.c_id;
++---------+--------+
+| name    | name   |
++---------+--------+
+| android | amit   |
+| NULL    | smit   |
+| android | vishal |
+| java    | sumit  |
+| NULL    | suman  |
++---------+--------+
+5 rows in set (0.00 sec)
+
+mysql> select course1.name,user1.name from course1 left join user1 on user1.course_id=course1.c_id;
++---------+--------+
+| name    | name   |
++---------+--------+
+| android | amit   |
+| android | vishal |
+| python  | NULL   |
+| java    | sumit  |
+| mysql   | NULL   |
++---------+--------+
+5 rows in set (0.00 sec)
+
+mysql> select course1.name aa,user1.name bb from course1 a left join user1 bb on user1.course_id=course1.c_id;
+ERROR 1054 (42S22): Unknown column 'course1.name' in 'field list'
+mysql> select course1.name,user1.name from course1 left join user1 on user1.course_id=course1.c_id;
++---------+--------+
+| name    | name   |
++---------+--------+
+| android | amit   |
+| android | vishal |
+| python  | NULL   |
+| java    | sumit  |
+| mysql   | NULL   |
++---------+--------+
+5 rows in set (0.00 sec)
+
+mysql> select user1.name,course1.name from course1 left join user1 on user1.course_id=course1.c_id;
++--------+---------+
+| name   | name    |
++--------+---------+
+| amit   | android |
+| vishal | android |
+| NULL   | python  |
+| sumit  | java    |
+| NULL   | mysql   |
++--------+---------+
+5 rows in set (0.00 sec)
+
+mysql> select user1.name,course1.name from user1 left join course1 on user1.course_id=course1.c_id;
++--------+---------+
+| name   | name    |
++--------+---------+
+| amit   | android |
+| smit   | NULL    |
+| vishal | android |
+| sumit  | java    |
+| suman  | NULL    |
++--------+---------+
+5 rows in set (0.00 sec)
+
+mysql> select user1.name,course1.name from user1 right join course1 on user1.course_id=course1.c_id;
++--------+---------+
+| name   | name    |
++--------+---------+
+| amit   | android |
+| vishal | android |
+| NULL   | python  |
+| sumit  | java    |
+| NULL   | mysql   |
++--------+---------+
+5 rows in set (0.00 sec)
+
+mysql> select user1.name,course1.name from course1 right join user1 on user1.course_id=course1.c_id;
++--------+---------+
+| name   | name    |
++--------+---------+
+| amit   | android |
+| smit   | NULL    |
+| vishal | android |
+| sumit  | java    |
+| suman  | NULL    |
++--------+---------+
+5 rows in set (0.00 sec)
+
+mysql> select user1.name,course1.name from user1 left join course1 on user1.course_id=course1.c_id;
++--------+---------+
+| name   | name    |
++--------+---------+
+| amit   | android |
+| smit   | NULL    |
+| vishal | android |
+| sumit  | java    |
+| suman  | NULL    |
++--------+---------+
+5 rows in set (0.00 sec)
+
+mysql>

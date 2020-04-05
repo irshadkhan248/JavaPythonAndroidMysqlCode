@@ -1,0 +1,25 @@
+delimiter $$
+use l10_db $$
+drop function if exists f3 $$
+create function f3() returns float deterministic 
+begin
+declare c int default 0;
+declare m int default 0;
+declare s int default 0;
+declare a float default 0.0;
+declare c1 cursor for select marks from student where marks is not null;
+open c1;
+	begin
+	declare exit handler for 1329 begin end;
+	while true do
+		fetch c1 into m;
+		set c=c+1;
+		set s=s+m;
+	end while;
+	
+	end ;
+close c1;
+set a=s/c; 
+return a;
+end $$
+delimiter ;

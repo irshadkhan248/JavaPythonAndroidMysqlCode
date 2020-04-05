@@ -1,0 +1,4 @@
+module mc
+{
+requires mb;
+}

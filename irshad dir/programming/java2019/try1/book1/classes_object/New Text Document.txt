@@ -1,0 +1,25 @@
+class Rectangle{
+private int length;
+private int width;
+public void setData(int length,int width){
+this.length=length;
+this.width=width;
+}
+public int areaRect(){
+int area;
+area=length*width;
+return area;
+}
+}
+
+
+class RectTest{
+public static void main(String args[]){
+Rectangle rect1=new Rectangle();
+Rectangle rect2=new Rectangle();
+rect1.setData(20,30);
+rect2.setData(200,300);
+System.out.println("area= "+rect1.areaRect());
+System.out.println("area= "+rect2.areaRect());
+}
+}

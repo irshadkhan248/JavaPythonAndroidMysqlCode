@@ -1,0 +1,164 @@
+		1)
+		mysql> select first_name as "FIRST NAME",last_name from emp;
+		+------------+-----------+
+		| FIRST NAME | last_name |
+		+------------+-----------+
+		| amit       | shah      |
+		| john       | d'soza    |
+		| nikhil     | roy       |
+		| raj        | sharma    |
+		+------------+-----------+
+		4 rows in set (0.00 sec)
+
+		2)
+		mysql> select concat(first_name,"(",department,")")as Emp_infp from emp;
+		+-----------------+
+		| Emp_infp        |
+		+-----------------+
+		| amit(banking)   |
+		| john(insurance) |
+		| nikhil(banking) |
+		| raj(insurance)  |
+		+-----------------+
+		4 rows in set (0.00 sec)
+
+		3)
+		mysql> select *from emp where salary%1000=0;
+		+-------------+------------+-----------+---------+--------------+------------+
+		| employee_id | first_name | last_name | salary  | joining_date | department |
+		+-------------+------------+-----------+---------+--------------+------------+
+		|           1 | amit       | shah      | 5000.00 | 2013-01-01   | banking    |
+		|           2 | john       | d'soza    | 4000.00 | 2013-01-01   | insurance  |
+		|           3 | nikhil     | roy       | 6000.00 | 2013-02-01   | banking    |
+		+-------------+------------+-----------+---------+--------------+------------+
+		3 rows in set (0.00 sec)
+
+		4)
+		mysql> select distinct department from emp;
+		+------------+
+		| department |
+		+------------+
+		| banking    |
+		| insurance  |
+		+------------+
+
+
+		5)
+
+		mysql> select concat(first_name," ",last_name)as Employee,
+		salary+salary*0.25 as "Incr.salary" from emp where salary+salary*0.25>5000;
+		+------------+-------------+
+		| Employee   | Incr.salary |
+		+------------+-------------+
+		| amit shah  |   6250.0000 |
+		| nikhil roy |   7500.0000 |
+		| raj sharma |   5625.0000 |
+		+------------+-------------+
+		3 rows in set (0.00 sec)
+
+
+		6)
+
+
+		mysql> select concat(first_name," gets Rs ",salary*12)as "Emp Info" from emp where department='insurance';
+		+-----------------------+
+		| Emp Info              |
+		+-----------------------+
+		| john gets Rs 48000.00 |
+		| raj gets Rs 54000.00  |
+		+-----------------------+
+		2 rows in set (0.00 sec)
+
+
+
+		7)
+
+		mysql> select *from emp where first_name = 'amit' or 'vishal';
+ 		mysql> select *from emp where first_name in('amit','vishal');
+		+-------------+------------+-----------+---------+--------------+------------+
+		| employee_id | first_name | last_name | salary  | joining_date | department |
+		+-------------+------------+-----------+---------+--------------+------------+
+		|           1 | amit       | shah      | 5000.00 | 2013-01-01   | banking    |
+		+-------------+------------+-----------+---------+--------------+------------+
+		1 row in set, 1 warning (0.00 sec)
+
+
+		8)
+
+		mysql> select *from emp where salary between 4500 and 5500;
+		+-------------+------------+-----------+---------+--------------+------------+
+		| employee_id | first_name | last_name | salary  | joining_date | department |
+		+-------------+------------+-----------+---------+--------------+------------+
+		|           1 | amit       | shah      | 5000.00 | 2013-01-01   | banking    |
+		|           5 | raj        | sharma    | 4500.00 | 2013-02-01   | insurance  |
+		+-------------+------------+-----------+---------+--------------+------------+
+		2 rows in set (0.00 sec)
+
+
+		9)
+
+		mysql> select *from emp where last_name like 's%' and first_name like '%a%';
+		+-------------+------------+-----------+---------+--------------+------------+
+		| employee_id | first_name | last_name | salary  | joining_date | department |
+		+-------------+------------+-----------+---------+--------------+------------+
+		|           1 | amit       | shah      | 5000.00 | 2013-01-01   | banking    |
+		|           5 | raj        | sharma    | 4500.00 | 2013-02-01   | insurance  |
+		+-------------+------------+-----------+---------+--------------+------------+
+		2 rows in set (0.00 sec)
+
+		10)
+
+		mysql> select *from emp where last_name like "%'%";
+		+-------------+------------+-----------+---------+--------------+------------+
+		| employee_id | first_name | last_name | salary  | joining_date | department |
+		+-------------+------------+-----------+---------+--------------+------------+
+		|           2 | john       | d'soza    | 4000.00 | 2013-01-01   | insurance  |
+		+-------------+------------+-----------+---------+--------------+------------+
+		1 row in set (0.00 sec)
+
+		11)
+
+		mysql> select *from emp order by department desc,first_name;
+		+-------------+------------+-----------+---------+--------------+------------+
+		| employee_id | first_name | last_name | salary  | joining_date | department |
+		+-------------+------------+-----------+---------+--------------+------------+
+		|           2 | john       | d'soza    | 4000.00 | 2013-01-01   | insurance  |
+		|           5 | raj        | sharma    | 4500.00 | 2013-02-01   | insurance  |
+		|           1 | amit       | shah      | 5000.00 | 2013-01-01   | banking    |
+		|           3 | nikhil     | roy       | 6000.00 | 2013-02-01   | banking    |
+		+-------------+------------+-----------+---------+--------------+------------+
+		4 rows in set (0.00 sec)
+
+		12)
+
+		mysql> select employee_id,first_name,salary as monthly_salary,salary*12 as "annual salary" from emp order by salary*12;
+		+-------------+------------+----------------+---------------+
+		| employee_id | first_name | monthly_salary | annual salary |
+		+-------------+------------+----------------+---------------+
+		|           2 | john       |        4000.00 |      48000.00 |
+		|           5 | raj        |        4500.00 |      54000.00 |
+		|           1 | amit       |        5000.00 |      60000.00 |
+		|           3 | nikhil     |        6000.00 |      72000.00 |
+		+-------------+------------+----------------+---------------+
+		4 rows in set (0.00 sec)
+
+		13)
+
+		mysql> select *from emp order by salary desc limit 2;
+		+-------------+------------+-----------+---------+--------------+------------+
+		| employee_id | first_name | last_name | salary  | joining_date | department |
+		+-------------+------------+-----------+---------+--------------+------------+
+		|           3 | nikhil     | roy       | 6000.00 | 2013-02-01   | banking    |
+		|           1 | amit       | shah      | 5000.00 | 2013-01-01   | banking    |
+		+-------------+------------+-----------+---------+--------------+------------+
+		2 rows in set (0.00 sec)
+
+		14)
+
+		mysql> select *from emp order by salary desc limit 1,1;
+		+-------------+------------+-----------+---------+--------------+------------+
+		| employee_id | first_name | last_name | salary  | joining_date | department |
+		+-------------+------------+-----------+---------+--------------+------------+
+		|           1 | amit       | shah      | 5000.00 | 2013-01-01   | banking    |
+		+-------------+------------+-----------+---------+--------------+------------+
+		1 row in set (0.00 sec)

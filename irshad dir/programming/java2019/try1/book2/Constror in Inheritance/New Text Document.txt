@@ -1,0 +1,16 @@
+class A{
+A(){
+System.out.println("1");
+}
+}
+class B extends A{
+B(){
+System.out.println("2");
+}
+}
+class ST30{
+public static void main(String args[]){
+A a=new A();
+B b=new B();
+}
+}
